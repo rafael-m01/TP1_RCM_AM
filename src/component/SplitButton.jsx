@@ -9,19 +9,19 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
+const options = ['Alexis', 'Rafael', 'Bob', 'Admin'];
 
 export default function SplitButton() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [label, setLabel] = React.useState("Login");
 
     const handleClick = () => {
-        console.info(`You clicked ${options[selectedIndex]}`);
+        console.info(`You clicked ${options[label]}`);
     };
 
-    const handleMenuItemClick = (event, index) => {
-        setSelectedIndex(index);
+    const handleMenuItemClick = (event, option) => {
+        setLabel(option);
         setOpen(false);
     };
 
@@ -43,8 +43,9 @@ export default function SplitButton() {
                 variant="contained"
                 ref={anchorRef}
                 aria-label="Button group with a nested menu"
+                color="inherit"
             >
-                <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+                <Button onClick={handleClick} sx={{fontWeight:"bold"}}>{label}</Button>
                 <Button
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}
@@ -52,6 +53,7 @@ export default function SplitButton() {
                     aria-label="select merge strategy"
                     aria-haspopup="menu"
                     onClick={handleToggle}
+
                 >
                     <ArrowDropDownIcon />
                 </Button>
@@ -75,12 +77,12 @@ export default function SplitButton() {
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList id="split-button-menu" autoFocusItem>
-                                    {options.map((option, index) => (
+                                    {options.map((option) => (
                                         <MenuItem
                                             key={option}
-                                            disabled={index === 2}
-                                            selected={index === selectedIndex}
-                                            onClick={(event) => handleMenuItemClick(event, index)}
+                                            selected={option === label}
+                                            onClick={(event) => handleMenuItemClick(event, option)}
+
                                         >
                                             {option}
                                         </MenuItem>
