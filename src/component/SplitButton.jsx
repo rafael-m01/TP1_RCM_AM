@@ -8,6 +8,8 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import {useContext} from "react";
+import LoginContext from "./LoginContext.jsx";
 
 const options = ['Alexis', 'Rafael', 'Bob', 'Admin'];
 
@@ -15,13 +17,15 @@ export default function SplitButton() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [label, setLabel] = React.useState("Login");
+    const {login, setLogin} = useContext(LoginContext)
 
     const handleClick = () => {
-        console.info(`You clicked ${options[label]}`);
+
     };
 
     const handleMenuItemClick = (event, option) => {
         setLabel(option);
+        setLogin(option)
         setOpen(false);
     };
 
@@ -45,7 +49,7 @@ export default function SplitButton() {
                 aria-label="Button group with a nested menu"
                 color="inherit"
             >
-                <Button onClick={handleClick} sx={{fontWeight:"bold"}}>{label}</Button>
+                <Button onClick={handleClick} sx={{fontWeight:"bold"}}>{login}</Button>
                 <Button
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}

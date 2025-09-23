@@ -7,20 +7,22 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SplitButton from "./SplitButton.jsx";
 import GamepadIcon from '@mui/icons-material/Gamepad';
+import {useContext} from "react";
+import LoginContext from "./LoginContext.jsx";
 
-const pages = ['Login', 'Créer une nouvelle', 'Recherche'];
-const settings = ['Statistiques', 'Logout'];
+const sections = ['Login', 'Créer une nouvelle', 'Recherche'];
+const more = ['Statistiques', 'Logout'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const {setLogin} = useContext(LoginContext);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -36,6 +38,15 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleClickMoreMenuOption = (setting) => {
+        if(setting == 'Logout'){
+            setLogin("Login")
+        }else{
+            console.log("Stats!")
+        }
+        handleCloseUserMenu()
+    }
 
     return (
         <>
@@ -88,7 +99,7 @@ function ResponsiveAppBar() {
                             onClose={handleCloseNavMenu}
                             sx={{ display: { xs: 'block', md: 'none' } }}
                         >
-                            {pages.map((page) => (
+                            {sections.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                                 </MenuItem>
@@ -115,7 +126,7 @@ function ResponsiveAppBar() {
                         [GameNews]
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'space-evenly' }}>
-                        {pages.map((page) =>
+                        {sections.map((page) =>
                             page === "Login" ? (
                                 <Box key={page} sx={{ display: 'flex', alignItems: 'center' }}>
                                     <SplitButton />
@@ -153,9 +164,9 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
+                            {more.map((setting) => (
+                                <MenuItem key={setting} onClick={() => handleClickMoreMenuOption(setting)}>
+                                    <Typography sx={{ textAlign: 'center' }} >{setting}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
