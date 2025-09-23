@@ -15,6 +15,7 @@ import SplitButton from "./SplitButton.jsx";
 import GamepadIcon from '@mui/icons-material/Gamepad';
 import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
+import NestedList from "./NestedList.jsx";
 
 const sections = ['Login', 'Créer une nouvelle', 'Recherche'];
 const more = ['Statistiques', 'Logout'];
@@ -99,11 +100,7 @@ function ResponsiveAppBar() {
                             onClose={handleCloseNavMenu}
                             sx={{ display: { xs: 'block', md: 'none' } }}
                         >
-                            {sections.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                                </MenuItem>
-                            ))}
+                            <NestedList sections={sections}/>
                         </Menu>
                     </Box>
                     <GamepadIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />

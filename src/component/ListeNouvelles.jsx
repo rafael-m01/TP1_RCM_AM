@@ -9,7 +9,7 @@ const Demo = styled('div')(() => ({
     backgroundImage:"linear-gradient(#3b3b3b, #1f1f1f)"
 }));
 
-export default function ListeNouvelles({listeNouvelles, setListeNouvelles}) {
+export default function ListeNouvelles({listeNouvelles}) {
     return (
         <Box sx={{ flexGrow: 1, width:"100%", }}>
                 <Grid

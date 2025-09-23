@@ -14,7 +14,7 @@ function App() {
         <LoginContext.Provider value={{login, setLogin}}>
             <CssBaseline/>
             <ResponsiveAppBar/>
-            <ListeNouvelles listeNouvelles={listeNouvelles} setListeNouvelles={setListeNouvelles}/>
+            <ListeNouvelles listeNouvelles={listeNouvelles}/>
         </LoginContext.Provider>
     </>
   )

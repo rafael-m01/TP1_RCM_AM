@@ -42,7 +42,7 @@ export default function Nouvelle({titre, image, texteComplet, datePublication, r
             <ListItemText
                 primary={titre}
                 secondary={resume}
-                sx={{color:"white", fontWeight:"bold", "& .MuiListItemText-secondary":{color:"grey"}}}
+                sx={{color:"white", fontWeight:"bold", "& .MuiListItemText-primary, & .MuiListItemText-secondary": {overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "block", maxWidth: "80%",}, "& .MuiListItemText-secondary": {color: "grey",}}}
             />
         </ListItem>
     )
