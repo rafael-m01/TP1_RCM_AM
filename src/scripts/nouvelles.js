@@ -7,6 +7,7 @@ export const nouvelles = [
         datePublication: "2025-09-22",
         resume: "Legendary Quest 3 is coming with stunning next-gen visuals and new gameplay features.",
         createur: "Alexis"
+
     },
     {
         id: 2,
