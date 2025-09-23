@@ -10,6 +10,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import PersonIcon from '@mui/icons-material/Person';
 import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
+import Divider from "@mui/material/Divider";
 
 export default function NestedList({sections}) {
     const [open, setOpen] = React.useState(false);
@@ -32,9 +33,12 @@ export default function NestedList({sections}) {
         >
             {sections.map(section =>
                 section !== "Login"?
-                    <ListItemButton key={section}>
-                        <ListItemText primary={section} />
-                    </ListItemButton>
+                    <>
+                        <ListItemButton key={section}>
+                            <ListItemText primary={section} />
+                        </ListItemButton>
+                        <Divider />
+                    </>
                     :
                     <>
                         <ListItemButton key={section} sx={{pl:2}} onClick={handleClick}>
@@ -53,6 +57,7 @@ export default function NestedList({sections}) {
                                 )}
                             </List>
                         </Collapse>
+                        <Divider />
                     </>
 
             )}
