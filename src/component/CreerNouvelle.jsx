@@ -2,27 +2,15 @@ import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import MenuItem from "@mui/material/MenuItem";
 
 const drawerWidth = "100%";
-
-
-
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'relative',
     alignItems: 'center',
@@ -34,6 +22,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuvert}) {
     const theme = useTheme();
+    const typesDeJeux = ["Sandbox", "Platformer", "Simulator", "First-person", "Adventure", "Puzzle", "Fighting", "Racing", "Stealth", "Strategy"]
 
     const handleDrawerClose = () => {
         setCreerNouvelleOuvert(false);
@@ -42,6 +31,10 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
     const Box = styled('div')(() => ({
         backgroundColor:"#1f1f1f"
     }));
+
+    function ajouteNouvelle(){
+
+    }
 
     return (
         <Box>
@@ -60,13 +53,65 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
             >
                 <DrawerHeader sx={{
                     backgroundColor:"#1f1f1f",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    fontWeight:"bold",
+                    color:"white"
                 }}>
                     <IconButton onClick={handleDrawerClose}>
                         <KeyboardArrowUpIcon sx={{color:"white"}}/>
                     </IconButton>
+                     Créer une nouvelle
                 </DrawerHeader>
                 <Divider />
+                <FormControl sx={{
+                    backgroundColor:"#7d7d7d",
+                    display:"flex"
+                }}>
+                    <Stack direction="row" spacing={2} sx={{
+                        marginLeft:"2%",
+                        marginTop:"1%"
+                    }}>
+                        <TextField label="Titre" required={true} margin="normal" variant="filled"  size="small" sx={{
+                            backgroundColor:"white",
+                            width:"70%",
+                        }}></TextField>
+                        <TextField
+                            select
+                            label="Type de jeu"
+                            variant="standard"
+                            sx={{
+                                backgroundColor:"#f0f0f0",
+                                width:"20%",
+                            }}
+                        >
+                            {typesDeJeux.map((type) => (
+                                <MenuItem key={type} value={type}>
+                                    {type}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Stack>
+                    <Stack direction="row" spacing={2} sx={{
+                        marginLeft:"2%",
+                        marginTop:"1%"
+                    }}>
+                        <TextField multiline rows={8} label="Texte complet" required={true} margin="normal" size="small" variant="filled" sx={{
+                            backgroundColor:"white",
+                            width:"95%"
+                        }}></TextField>
+                    </Stack>
+                    <Stack direction="row" spacing={2} sx={{
+                        marginLeft:"2%",
+                        marginTop:"1%"
+                    }}>
+                        <TextField label="Résumé" required={true} margin="normal" variant="filled" size="small" sx={{
+                            backgroundColor:"white",
+                            width:"95%"
+                        }}></TextField>
+                    </Stack>
+
+                </FormControl>
+
 
             </Drawer>
         </Box>
