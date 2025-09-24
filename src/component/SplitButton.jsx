@@ -16,7 +16,7 @@ const options = ['Alexis', 'Rafael', 'Bob', 'Admin'];
 export default function SplitButton() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
-    const [label, setLabel] = React.useState("Login");
+    const [label, setLabel] = React.useState("Se connecter");
     const {login, setLogin} = useContext(LoginContext)
 
     const handleClick = () => {

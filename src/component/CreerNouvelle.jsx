@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
@@ -26,7 +26,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 var idGlobal = 21;
 
 export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuvert}) {
-    const theme = useTheme();
     const typesDeJeux = ["Sandbox", "Platformer", "Simulator", "First-person", "Adventure", "Puzzle", "Fighting", "Racing", "Stealth", "Strategy"]
     const {login} = useContext(LoginContext)
     const {setListeNouvelles} = useContext(ListeNouvellesContext)
@@ -101,6 +100,7 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
                                 select
                                 label="Type de jeu"
                                 variant="standard"
+                                value={typesDeJeux[0]}
                                 sx={{
                                     backgroundColor:"#f0f0f0",
                                     width:"20%",

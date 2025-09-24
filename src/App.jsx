@@ -7,7 +7,7 @@ import {nouvelles} from "./scripts/nouvelles.js"
 import ListeNouvellesContext from "./component/ListeNouvellesContext.jsx";
 
 function App() {
-    const [login, setLogin] = useState("Login")
+    const [login, setLogin] = useState("Se connecter")
     const [listeNouvelles, setListeNouvelles] = useState(nouvelles)
 
   return (

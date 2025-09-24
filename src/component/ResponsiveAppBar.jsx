@@ -17,23 +17,10 @@ import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
 import NestedList from "./NestedList.jsx";
 import CreerNouvelle from "./CreerNouvelle.jsx";
-import { styled, useTheme } from '@mui/material/styles';
-import Drawer from '@mui/material/Drawer';
+import {styled} from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
-const sections = ['Login', 'Créer une nouvelle', 'Recherche'];
-const more = ['Statistiques', 'Logout'];
+const more = ['Statistiques', 'Se déconnecter'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -57,8 +44,8 @@ function ResponsiveAppBar() {
     };
 
     const handleClickMoreMenuOption = (setting) => {
-        if(setting === 'Logout'){
-            setLogin("Login")
+        if(setting === 'Se déconnecter'){
+            setLogin("Se connecter")
         }else{
             console.log("Stats!")
         }
@@ -67,10 +54,6 @@ function ResponsiveAppBar() {
 
     const handleDrawerCreerNouvelleOpen = () => {
         setCreerNouvelleOuvert(true);
-    };
-
-    const handleDrawerCreerNouvelleClose = () => {
-        setCreerNouvelleOuvert(false);
     };
 
     const AppBar = styled(MuiAppBar)(({theme}) => ({
@@ -128,7 +111,7 @@ function ResponsiveAppBar() {
                                 onClose={handleCloseNavMenu}
                                 sx={{ display: { xs: 'block', md: 'none' } }}
                             >
-                                <NestedList sections={sections}/>
+                                <NestedList handleDrawerCreerNouvelleOpen={handleDrawerCreerNouvelleOpen}/>
                             </Menu>
                         </Box>
                         <GamepadIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -151,19 +134,19 @@ function ResponsiveAppBar() {
                             [GameNews]
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'space-evenly' }}>
-                            <Box key={"Login"} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Box key={"Se connecter"} sx={{ display: 'flex', alignItems: 'center' }}>
                                 <SplitButton />
                             </Box>
                             <Button
                                 key={"Créer une nouvelle"}
-                                onClick={login !== "Login"?handleDrawerCreerNouvelleOpen:null}
+                                onClick={login !== "Se connecter"?handleDrawerCreerNouvelleOpen:null}
                                 sx={{ my: 2, color: 'black', fontWeight:"bold", display: 'block', '&:hover':{backgroundColor: 'rgba(125, 125, 125, 0.2)'},}}
                             >
                                 Créer une nouvelle
                             </Button>
                             <Button
                                 key="Recherche"
-                                onClick={login !== "Login"?handleDrawerCreerNouvelleOpen:null}
+                                onClick={null}
                                 sx={{ my: 2, color: 'black', fontWeight:"bold", display: 'block', '&:hover':{backgroundColor: 'rgba(125, 125, 125, 0.2)'},}}
                             >
                                 Recherche

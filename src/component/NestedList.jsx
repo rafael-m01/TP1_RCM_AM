@@ -12,7 +12,7 @@ import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
 import Divider from "@mui/material/Divider";
 
-export default function NestedList({sections}) {
+export default function NestedList({handleDrawerCreerNouvelleOpen}) {
     const [open, setOpen] = React.useState(false);
     const utilisateurs = ['Alexis', 'Rafael', 'Bob', 'Admin'];
     const {setLogin} = useContext(LoginContext)
@@ -25,42 +25,39 @@ export default function NestedList({sections}) {
         setLogin(utilisateur)
     }
 
+
+
     return (
         <List
             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
             component="nav"
             aria-labelledby="nested-list-subheader"
         >
-            {sections.map(section =>
-                section !== "Login"?
-                    <>
-                        <ListItemButton key={section}>
-                            <ListItemText primary={section} />
+            <ListItemButton key={"Se connecter"} sx={{pl:2}} onClick={handleClick}>
+                <ListItemText primary={"Se connecter"} />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    {utilisateurs.map(utilisateur =>
+                        <ListItemButton key={utilisateur} sx={{ pl: 4 }} onClick={() => handleLoginUtilisateurClick(utilisateur)}>
+                            <ListItemIcon>
+                                <PersonIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={utilisateur} />
                         </ListItemButton>
-                        <Divider />
-                    </>
-                    :
-                    <>
-                        <ListItemButton key={section} sx={{pl:2}} onClick={handleClick}>
-                            <ListItemText primary={section} />
-                            {open ? <ExpandLess /> : <ExpandMore />}
-                            </ListItemButton>
-                            <Collapse in={open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                {utilisateurs.map(utilisateur =>
-                                    <ListItemButton key={utilisateur} sx={{ pl: 4 }} onClick={() => handleLoginUtilisateurClick(utilisateur)}>
-                                        <ListItemIcon>
-                                            <PersonIcon />
-                                        </ListItemIcon>
-                                        <ListItemText primary={utilisateur} />
-                                    </ListItemButton>
-                                )}
-                            </List>
-                        </Collapse>
-                        <Divider />
-                    </>
-
-            )}
+                    )}
+                </List>
+            </Collapse>
+            <Divider />
+            <ListItemButton key={"Créer une nouvelle"} onClick={handleDrawerCreerNouvelleOpen}>
+                <ListItemText primary={"Créer une nouvelle"} />
+            </ListItemButton>
+            <Divider />
+            <ListItemButton key={"Recherche"}>
+                <ListItemText primary={"Recherche"} />
+            </ListItemButton>
+            <Divider />
         </List>
     );
 }
