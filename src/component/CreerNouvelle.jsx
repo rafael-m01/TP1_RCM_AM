@@ -47,10 +47,10 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
             titre:formData.get("titre"),
             image:formData.get("image"),
             texteComplet:formData.get("texteComplet"),
-            datePublication:Date.now().toString(),
+            datePublication:new Date().toISOString().split("T")[0],
             resume:formData.get("resume"),
             createur:login,
-            typeDeJeux:formData.get("")
+            typeDeJeux:formData.get("typeDeJeux")
         }
         setListeNouvelles((oldListeNouvelles) => ([nouvelle, ...oldListeNouvelles]))
     }
