@@ -4,12 +4,15 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import Nouvelle from "./Nouvelle.jsx";
+import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
+import {useContext, useState} from "react";
 
 const Demo = styled('div')(() => ({
     backgroundImage:"linear-gradient(#3b3b3b, #1f1f1f)"
 }));
 
-export default function ListeNouvelles({listeNouvelles}) {
+export default function ListeNouvelles() {
+    const {listeNouvelles} = useContext(ListeNouvellesContext)
     return (
         <Box sx={{ flexGrow: 1, width:"100%", }}>
                 <Grid

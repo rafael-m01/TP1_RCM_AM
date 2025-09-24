@@ -4,6 +4,7 @@ import ListeNouvelles from "./component/ListeNouvelles.jsx";
 import LoginContext from "./component/LoginContext.jsx";
 import {useState} from "react";
 import {nouvelles} from "./scripts/nouvelles.js"
+import ListeNouvellesContext from "./component/ListeNouvellesContext.jsx";
 
 function App() {
     const [login, setLogin] = useState("Login")
@@ -13,8 +14,10 @@ function App() {
     <>
         <LoginContext.Provider value={{login, setLogin}}>
             <CssBaseline/>
-            <ResponsiveAppBar/>
-            <ListeNouvelles listeNouvelles={listeNouvelles}/>
+            <ListeNouvellesContext value={{listeNouvelles, setListeNouvelles}}>
+                <ResponsiveAppBar/>
+                <ListeNouvelles/>
+            </ListeNouvellesContext>
         </LoginContext.Provider>
     </>
   )

@@ -38,7 +38,7 @@ const more = ['Statistiques', 'Logout'];
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const {setLogin} = useContext(LoginContext);
+    const {login, setLogin} = useContext(LoginContext);
     const [creerNouvelleOuvert, setCreerNouvelleOuvert] = React.useState(false);
 
     const handleOpenNavMenu = (event) => {
@@ -57,7 +57,7 @@ function ResponsiveAppBar() {
     };
 
     const handleClickMoreMenuOption = (setting) => {
-        if(setting == 'Logout'){
+        if(setting === 'Logout'){
             setLogin("Login")
         }else{
             console.log("Stats!")
@@ -151,21 +151,23 @@ function ResponsiveAppBar() {
                             [GameNews]
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'space-evenly' }}>
-                            {sections.map((page) =>
-                                page === "Login" ? (
-                                    <Box key={page} sx={{ display: 'flex', alignItems: 'center' }}>
-                                        <SplitButton />
-                                    </Box>
-                                ) : (
-                                    <Button
-                                        key={page}
-                                        onClick={page === "Créer une nouvelle"?handleDrawerCreerNouvelleOpen:null}
-                                        sx={{ my: 2, color: 'black', fontWeight:"bold", display: 'block', '&:hover':{backgroundColor: 'rgba(125, 125, 125, 0.2)'},}}
-                                    >
-                                        {page}
-                                    </Button>
-                                )
-                            )}
+                            <Box key={"Login"} sx={{ display: 'flex', alignItems: 'center' }}>
+                                <SplitButton />
+                            </Box>
+                            <Button
+                                key={"Créer une nouvelle"}
+                                onClick={login !== "Login"?handleDrawerCreerNouvelleOpen:null}
+                                sx={{ my: 2, color: 'black', fontWeight:"bold", display: 'block', '&:hover':{backgroundColor: 'rgba(125, 125, 125, 0.2)'},}}
+                            >
+                                Créer une nouvelle
+                            </Button>
+                            <Button
+                                key="Recherche"
+                                onClick={login !== "Login"?handleDrawerCreerNouvelleOpen:null}
+                                sx={{ my: 2, color: 'black', fontWeight:"bold", display: 'block', '&:hover':{backgroundColor: 'rgba(125, 125, 125, 0.2)'},}}
+                            >
+                                Recherche
+                            </Button>
                         </Box>
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="More">
