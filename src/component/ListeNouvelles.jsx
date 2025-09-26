@@ -5,27 +5,39 @@ import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import Nouvelle from "./Nouvelle.jsx";
 import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
-import {useContext, useState} from "react";
+import {useContext} from "react";
+import CreerNouvelle from "./CreerNouvelle.jsx";
 
 const Demo = styled('div')(() => ({
     backgroundImage:"linear-gradient(#3b3b3b, #1f1f1f)"
 }));
 
-export default function ListeNouvelles() {
+
+
+export default function ListeNouvelles({creerNouvelleOuvert, setCreerNouvelleOuvert}) {
     const {listeNouvelles} = useContext(ListeNouvellesContext)
+
+    const identifierNouvelle = (id) => {
+        const nouvelle = listeNouvelles.find(nouvelle => nouvelle.id === id)
+    }
+
     return (
-        <Box sx={{ flexGrow: 1, width:"100%", }}>
-                <Grid
-                    width="100%"
-                >
-                    <Demo>
-                        <List>
-                            {listeNouvelles.map(nouvelle =>
-                                <Nouvelle key={nouvelle.id} {...nouvelle}/>
-                            )}
-                        </List>
-                    </Demo>
-                </Grid>
-        </Box>
+        <>
+            <CreerNouvelle creerNouvelleOuvert={creerNouvelleOuvert} setCreerNouvelleOuvert={setCreerNouvelleOuvert}/>
+            <Box sx={{ flexGrow: 1, width:"100%", }}>
+                    <Grid
+                        width="100%"
+                    >
+                        <Demo>
+                            <List>
+                                {listeNouvelles.map(nouvelle =>
+                                    <Nouvelle key={nouvelle.id} {...nouvelle}/>
+                                )}
+                            </List>
+                        </Demo>
+                    </Grid>
+            </Box>
+        </>
     );
 }
+

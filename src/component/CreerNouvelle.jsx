@@ -54,6 +54,8 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
         setListeNouvelles((oldListeNouvelles) => ([nouvelle, ...oldListeNouvelles]))
     }
 
+
+
     return (
         <Box>
             <Drawer

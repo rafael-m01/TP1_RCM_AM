@@ -22,11 +22,11 @@ import MuiAppBar from '@mui/material/AppBar';
 
 const more = ['Statistiques', 'Se déconnecter'];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({setCreerNouvelleOuvert}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const {login, setLogin} = useContext(LoginContext);
-    const [creerNouvelleOuvert, setCreerNouvelleOuvert] = React.useState(false);
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -185,7 +185,7 @@ function ResponsiveAppBar() {
                 </Container>
             </AppBar>
         <Toolbar/>
-            <CreerNouvelle creerNouvelleOuvert={creerNouvelleOuvert} setCreerNouvelleOuvert={setCreerNouvelleOuvert}/>
+
         </>
     );
 }
