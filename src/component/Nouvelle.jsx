@@ -10,8 +10,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
 
-export default function Nouvelle({titre, image, texteComplet, datePublication, resume, createur}){
+export default function Nouvelle({id, titre, image, texteComplet, datePublication, resume, createur, nouvelleIdGetter, setCreerNouvelleDrawerOuvert}){
     const {login} = useContext(LoginContext)
+
+    const handleModifierNouvelle = () => {
+        nouvelleIdGetter(id);
+        setCreerNouvelleDrawerOuvert(true);
+    };
 
     return(
         <ListItem
@@ -22,7 +27,7 @@ export default function Nouvelle({titre, image, texteComplet, datePublication, r
                     {login === createur || login === "Admin"?
                         <>
                             <IconButton edge="end" aria-label="delete">
-                                <EditIcon sx={{color:"white"}}/>
+                                <EditIcon sx={{color:"white"}} onClick={handleModifierNouvelle}/>
                             </IconButton>
                             <IconButton edge="end" aria-label="delete">
                                 <DeleteIcon sx={{color:"white"}}/>

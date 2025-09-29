@@ -25,13 +25,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 var idGlobal = 21;
 
-export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuvert}) {
+export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert, nouvelleEnModification, setNouvelleEnModification}) {
     const typesDeJeux = ["Sandbox", "Platformer", "Simulator", "First-person", "Adventure", "Puzzle", "Fighting", "Racing", "Stealth", "Strategy"]
     const {login} = useContext(LoginContext)
     const {setListeNouvelles} = useContext(ListeNouvellesContext)
 
     const handleDrawerClose = () => {
-        setCreerNouvelleOuvert(false);
+        setCreerNouvelleDrawerOuvert(false);
+        setNouvelleEnModification(null);
     };
 
     const Box = styled('div')(() => ({
@@ -52,9 +53,27 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
             typeDeJeux:formData.get("typeDeJeux")
         }
         setListeNouvelles((oldListeNouvelles) => ([nouvelle, ...oldListeNouvelles]))
+        setCreerNouvelleDrawerOuvert(false);
     }
 
-
+    function modifierNouvelle(event){
+        event.preventDefault()
+        const formData = new FormData(event.target);
+        setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>
+            nouvelle.id === nouvelleEnModification.id
+                ? {...nouvelle,
+                    titre:formData.get("titre"),
+                    image:formData.get("image"),
+                    texteComplet:formData.get("texteComplet"),
+                    datePublication:new Date().toISOString().split("T")[0],
+                    resume:formData.get("resume"),
+                    createur:login,
+                    typeDeJeux:formData.get("typeDeJeux")}
+                : nouvelle
+        )));
+        setNouvelleEnModification(null);
+        setCreerNouvelleDrawerOuvert(null);
+    }
 
     return (
         <Box>
@@ -69,7 +88,7 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
                 }}
                 variant="persistent"
                 anchor="top"
-                open={creerNouvelleOuvert}
+                open={creerNouvelleDrawerOuvert}
             >
                 <DrawerHeader sx={{
                     backgroundColor:"#1f1f1f",
@@ -80,20 +99,20 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
                     <IconButton onClick={handleDrawerClose}>
                         <KeyboardArrowUpIcon sx={{color:"white"}}/>
                     </IconButton>
-                     Créer une nouvelle
+                    {nouvelleEnModification==null?"Créer une nouvelle":"Modifier une nouvelle"}
                 </DrawerHeader>
                 <Divider />
                 <Box sx={{
                     backgroundColor:"#7d7d7d",
                 }}>
-                    <FormControl component="form" onSubmit={ajouterNouvelle} sx={{
+                    <FormControl component="form" onSubmit={nouvelleEnModification==null?ajouterNouvelle:modifierNouvelle} sx={{
                         display:"flex"
                     }}>
                         <Stack direction="row" spacing={2} sx={{
                             marginLeft:"2%",
                             marginTop:"1%"
                         }}>
-                            <TextField name="titre" label="Titre" required={true} margin="normal" variant="filled"  size="small" sx={{
+                            <TextField defaultValue={nouvelleEnModification != null?nouvelleEnModification.titre:""} name="titre" label="Titre" required={true} margin="normal" variant="filled"  size="small" sx={{
                                 backgroundColor:"white",
                                 width:"70%",
                             }}></TextField>
@@ -102,7 +121,7 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
                                 select
                                 label="Type de jeu"
                                 variant="standard"
-                                value={typesDeJeux[0]}
+                                defaultValue={nouvelleEnModification != null?nouvelleEnModification.typeDeJeu:typesDeJeux[0]}
                                 sx={{
                                     backgroundColor:"#f0f0f0",
                                     width:"20%",
@@ -119,7 +138,7 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
                             marginLeft:"2%",
                             marginTop:"1%"
                         }}>
-                            <TextField name="texteComplet" multiline rows={8} label="Texte complet" required={true} margin="normal" size="small" variant="filled" sx={{
+                            <TextField defaultValue={nouvelleEnModification != null?nouvelleEnModification.texteComplet:""} name="texteComplet" multiline rows={8} label="Texte complet" required={true} margin="normal" size="small" variant="filled" sx={{
                                 backgroundColor:"white",
                                 width:"95%"
                             }}></TextField>
@@ -128,7 +147,7 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
                             marginLeft:"2%",
                             marginTop:"1%"
                         }}>
-                            <TextField name="resume" label="Résumé" required={true} margin="normal" variant="filled" size="small" sx={{
+                            <TextField defaultValue={nouvelleEnModification != null?nouvelleEnModification.resume:""} name="resume" label="Résumé" required={true} margin="normal" variant="filled" size="small" sx={{
                                 backgroundColor:"white",
                                 width:"95%"
                             }}></TextField>
@@ -138,11 +157,11 @@ export default function CreerNouvelle({creerNouvelleOuvert, setCreerNouvelleOuve
                             marginTop:"1%",
                             marginBottom:"1%"
                         }}>
-                            <TextField name="image" label="Image (chemin de fichier)" required={true} margin="normal" variant="filled" size="small" sx={{
+                            <TextField defaultValue={nouvelleEnModification != null?nouvelleEnModification.image:""} name="image" label="Image (chemin de fichier)" required={true} margin="normal" variant="filled" size="small" sx={{
                                 backgroundColor:"white",
                                 width:"70%"
                             }}></TextField>
-                            <Button type="submit" color="primary" variant="contained">Ajouter la nouvelle</Button>
+                            <Button type="submit" color="primary" variant="contained">{nouvelleEnModification==null?"Ajouter la nouvelle":"Modifier la nouvelle"}</Button>
                         </Stack>
                     </FormControl>
                 </Box>

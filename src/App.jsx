@@ -11,15 +11,15 @@ import CreerNouvelle from "./component/CreerNouvelle.jsx";
 function App() {
     const [login, setLogin] = useState("Se connecter")
     const [listeNouvelles, setListeNouvelles] = useState(nouvelles)
-    const [creerNouvelleOuvert, setCreerNouvelleOuvert] = React.useState(false);
+    const [creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert] = React.useState(false);
 
   return (
     <>
         <LoginContext.Provider value={{login, setLogin}}>
             <CssBaseline/>
             <ListeNouvellesContext value={{listeNouvelles, setListeNouvelles}}>
-                <ResponsiveAppBar setCreerNouvelleOuvert={setCreerNouvelleOuvert}/>
-                <ListeNouvelles creerNouvelleOuvert={creerNouvelleOuvert} setCreerNouvelleOuvert={setCreerNouvelleOuvert}/>
+                <ResponsiveAppBar setCreerNouvelleOuvert={setCreerNouvelleDrawerOuvert}/>
+                <ListeNouvelles creerNouvelleDrawerOuvert={creerNouvelleDrawerOuvert} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert}/>
             </ListeNouvellesContext>
         </LoginContext.Provider>
     </>
