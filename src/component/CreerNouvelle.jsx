@@ -72,7 +72,7 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
                 : nouvelle
         )));
         setNouvelleEnModification(null);
-        setCreerNouvelleDrawerOuvert(null);
+        setCreerNouvelleDrawerOuvert(false);
     }
 
     return (
