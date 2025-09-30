@@ -55,7 +55,8 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
             datePublication:new Date().toISOString().split("T")[0],
             resume:formData.get("resume"),
             createur:login,
-            typeDeJeux:formData.get("typeDeJeux")
+            typeDeJeux:formData.get("typeDeJeux"),
+            bookmarkedPar:[]
         }
         //Ajout de la nouvelle à la liste avec le setter du state
         setListeNouvelles((oldListeNouvelles) => ([nouvelle, ...oldListeNouvelles]))

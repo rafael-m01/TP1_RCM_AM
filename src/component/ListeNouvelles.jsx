@@ -97,7 +97,7 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
     return (
         <>
             <CreerNouvelle nouvelleEnModification={nouvelleEnModification} setNouvelleEnModification={setNouvelleEnModification} creerNouvelleDrawerOuvert={creerNouvelleDrawerOuvert} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert}/>
-            <Box sx={{ flexGrow: 1, width:"100%" }}>
+            <Box sx={{ flexGrow: 1, width:"100%", minHeight:"100vh", backgroundColor:"#1f1f1f" }}>
                 <Grid width="100%">
                     <Demo>
                         <List>
@@ -105,7 +105,7 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
                                 nouvellesFiltrees.map(nouvelle =>
                                     //Set estDejaBookmarked à true ou false dépendemment de la donnée enregistré dans bookmarkedPar
                                     //dans la nouvelle, pour que les nouvelles qui sont bookmarked apparaissent à l'affichage initial
-                                    <Nouvelle key={nouvelle.id} nouvelleIdGetter={identifierNouvelle} setNouvelleEnModification={setNouvelleEnModification} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert} estDejaBookmarked={nouvelle.bookmarkedPar.includes(login)} {...nouvelle}/>
+                                    <Nouvelle key={nouvelle.id} nouvelleIdGetter={identifierNouvelle} setNouvelleEnModification={setNouvelleEnModification} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert} estDejaBookmarked={nouvelle.bookmarkedPar !== undefined?nouvelle.bookmarkedPar.includes(login):false} {...nouvelle}/>
                                 )
                             ) : (
                                 <Typography sx={{textAlign: 'center', p: 4, color: 'white'}}>
