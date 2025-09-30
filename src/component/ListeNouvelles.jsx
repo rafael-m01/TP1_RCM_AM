@@ -58,7 +58,7 @@ const checkTaille = (contenu, critereValue) => {
 };
 
 export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert, appliedCriteria}) {
-    const {listeNouvelles} = useContext(ListeNouvellesContext);
+    const {listeNouvelles, setListeNouvelles} = useContext(ListeNouvellesContext);
     const [nouvelleEnModification, setNouvelleEnModification] = useState(null);
     const {login} = useContext(LoginContext);
 
@@ -66,6 +66,10 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
     //Sert à retrouver la nouvelle et ses infos pour pouvoir les afficher dans la modification de nouvelles
     const identifierNouvelle = (id) => {
         setNouvelleEnModification(listeNouvelles.find(nouvelle => nouvelle.id === id))
+    }
+
+    const supprimerNouvelle = (id) => {
+        setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.filter(nouvelle => nouvelle.id !== id)));
     }
 
     const nouvellesFiltrees = listeNouvelles.filter(nouvelle => {
@@ -105,7 +109,7 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
                                 nouvellesFiltrees.map(nouvelle =>
                                     //Set estDejaBookmarked à true ou false dépendemment de la donnée enregistré dans bookmarkedPar
                                     //dans la nouvelle, pour que les nouvelles qui sont bookmarked apparaissent à l'affichage initial
-                                    <Nouvelle key={nouvelle.id} nouvelleIdGetter={identifierNouvelle} setNouvelleEnModification={setNouvelleEnModification} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert} estDejaBookmarked={nouvelle.bookmarkedPar !== undefined?nouvelle.bookmarkedPar.includes(login):false} {...nouvelle}/>
+                                    <Nouvelle key={nouvelle.id} nouvelleIdGetter={identifierNouvelle} supprimerNouvelle={supprimerNouvelle} setNouvelleEnModification={setNouvelleEnModification} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert} estDejaBookmarked={nouvelle.bookmarkedPar !== undefined?nouvelle.bookmarkedPar.includes(login):false} {...nouvelle}/>
                                 )
                             ) : (
                                 <Typography sx={{textAlign: 'center', p: 4, color: 'white'}}>

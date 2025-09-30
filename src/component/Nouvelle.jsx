@@ -13,7 +13,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
 
-export default function Nouvelle({id, titre, image, texteComplet, datePublication, resume, createur, nouvelleIdGetter, setCreerNouvelleDrawerOuvert, estDejaBookmarked}){
+export default function Nouvelle({id, titre, image, texteComplet, datePublication, resume, createur, nouvelleIdGetter, supprimerNouvelle, setCreerNouvelleDrawerOuvert, estDejaBookmarked}){
     const {login} = useContext(LoginContext)
     const [estBookmarked, setEstBookmarked] = useState(estDejaBookmarked)
     const {setListeNouvelles} = useContext(ListeNouvellesContext)
@@ -67,7 +67,7 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
                                 <EditIcon sx={{color:"white"}} onClick={handleModifierNouvelle}/>
                             </IconButton>
                             <IconButton edge="end" aria-label="delete">
-                                <DeleteIcon sx={{color:"white"}}/>
+                                <DeleteIcon sx={{color:"white"}} onClick={() => supprimerNouvelle(id)}/>
                             </IconButton>
                         </>: null}
                     {/* Ne fait apparaitre le bookmark que si un utilisateur est connecté */}
