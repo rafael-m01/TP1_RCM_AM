@@ -13,7 +13,7 @@ import LoginContext from "./LoginContext.jsx";
 
 const options = ['Alexis', 'Rafael', 'Bob', 'Admin'];
 
-export default function SplitButton() {
+export default function SplitButton({setPageBookmarkOuverte}) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [label, setLabel] = React.useState("Se connecter");
@@ -24,6 +24,9 @@ export default function SplitButton() {
     };
 
     const handleMenuItemClick = (event, option) => {
+        if(login !== option){
+            setPageBookmarkOuverte(false);
+        }
         setLabel(option);
         setLogin(option)
         setOpen(false);

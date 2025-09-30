@@ -7,7 +7,8 @@ export const nouvelles = [
         datePublication: "2025-09-22",
         resume: "Legendary Quest 3 is coming with stunning next-gen visuals and new gameplay features.",
         createur: "Alexis",
-        typeDeJeu: "Adventure"
+        typeDeJeu: "Adventure",
+        bookmarkedPar: []
     },
     {
         id: 2,
@@ -17,7 +18,8 @@ export const nouvelles = [
         datePublication: "2025-09-21",
         resume: "Pixel Pirates reaches 1 million players thanks to its charming pixel art and ship battles.",
         createur: "Bob",
-        typeDeJeu: "Adventure"
+        typeDeJeu: "Adventure",
+        bookmarkedPar: []
     },
     {
         id: 3,
@@ -27,7 +29,8 @@ export const nouvelles = [
         datePublication: "2025-09-20",
         resume: "HyperDrive VR racing game opens beta next week with immersive high-speed tracks.",
         createur: "Rafael",
-        typeDeJeu: "Racing"
+        typeDeJeu: "Racing",
+        bookmarkedPar: []
     },
     {
         id: 4,
@@ -37,7 +40,8 @@ export const nouvelles = [
         datePublication: "2025-09-19",
         resume: "Dungeon Realms expansion brings new dungeons, bosses, and multiplayer features.",
         createur: "Alexis",
-        typeDeJeu: "Adventure"
+        typeDeJeu: "Adventure",
+        bookmarkedPar: []
     },
     {
         id: 5,
@@ -47,7 +51,8 @@ export const nouvelles = [
         datePublication: "2025-09-18",
         resume: "Cyberpunk Legends introduces photo mode with filters and cinematic controls.",
         createur: "Bob",
-        typeDeJeu: "Adventure"
+        typeDeJeu: "Adventure",
+        bookmarkedPar: []
     },
     {
         id: 6,
@@ -57,7 +62,8 @@ export const nouvelles = [
         datePublication: "2025-09-17",
         resume: "JumpQuest celebrates 5 years with free DLC and teases a sequel.",
         createur: "Rafael",
-        typeDeJeu: "Platformer"
+        typeDeJeu: "Platformer",
+        bookmarkedPar: []
     },
     {
         id: 7,
@@ -67,7 +73,8 @@ export const nouvelles = [
         datePublication: "2025-09-16",
         resume: "Galactic Wars introduces full crossplay and new gameplay updates.",
         createur: "Alexis",
-        typeDeJeu: "Strategy"
+        typeDeJeu: "Strategy",
+        bookmarkedPar: []
     },
     {
         id: 8,
@@ -77,7 +84,8 @@ export const nouvelles = [
         datePublication: "2025-09-15",
         resume: "Monster Hunter Origins adds new monsters with unique attack patterns.",
         createur: "Rafael",
-        typeDeJeu: "Adventure"
+        typeDeJeu: "Adventure",
+        bookmarkedPar: []
     },
     {
         id: 9,
@@ -87,7 +95,8 @@ export const nouvelles = [
         datePublication: "2025-09-14",
         resume: "BlockWorld adds modding support for custom content and gameplay.",
         createur: "Bob",
-        typeDeJeu: "Sandbox"
+        typeDeJeu: "Sandbox",
+        bookmarkedPar: []
     },
     {
         id: 10,
@@ -97,7 +106,8 @@ export const nouvelles = [
         datePublication: "2025-09-13",
         resume: "Rogue Heist world record beaten with a nearly two-minute improvement.",
         createur: "Alexis",
-        typeDeJeu: "Stealth"
+        typeDeJeu: "Stealth",
+        bookmarkedPar: []
     },
     {
         id: 11,
@@ -107,7 +117,8 @@ export const nouvelles = [
         datePublication: "2025-09-12",
         resume: "Sky Realms multiplayer beta lets players explore floating islands and fight in sky battles.",
         createur: "Bob",
-        typeDeJeu: "Adventure"
+        typeDeJeu: "Adventure",
+        bookmarkedPar: []
     },
     {
         id: 12,
@@ -117,7 +128,8 @@ export const nouvelles = [
         datePublication: "2025-09-11",
         resume: "Agent Zero DLC introduces stealth gameplay and new gadgets.",
         createur: "Rafael",
-        typeDeJeu: "Stealth"
+        typeDeJeu: "Stealth",
+        bookmarkedPar: []
     },
     {
         id: 13,
@@ -127,7 +139,8 @@ export const nouvelles = [
         datePublication: "2025-09-10",
         resume: "Fantasy Farmers hits 500k players and celebrates with an in-game festival.",
         createur: "Alexis",
-        typeDeJeu: "Simulator"
+        typeDeJeu: "Simulator",
+        bookmarkedPar: []
     },
     {
         id: 14,
@@ -137,7 +150,8 @@ export const nouvelles = [
         datePublication: "2025-09-09",
         resume: "Battle Mechs Online launches its first official eSports tournament.",
         createur: "Rafael",
-        typeDeJeu: "Fighting"
+        typeDeJeu: "Fighting",
+        bookmarkedPar: []
     },
     {
         id: 15,
@@ -147,7 +161,8 @@ export const nouvelles = [
         datePublication: "2025-09-08",
         resume: "Zombie Survival VR adds full motion controls for immersive gameplay.",
         createur: "Bob",
-        typeDeJeu: "First-person"
+        typeDeJeu: "First-person",
+        bookmarkedPar: []
     },
     {
         id: 16,
@@ -157,7 +172,8 @@ export const nouvelles = [
         datePublication: "2025-09-07",
         resume: "Star Colonies comes to mobile with full features and cross-save support.",
         createur: "Alexis",
-        typeDeJeu: "Strategy"
+        typeDeJeu: "Strategy",
+        bookmarkedPar: []
     },
     {
         id: 17,
@@ -167,7 +183,8 @@ export const nouvelles = [
         datePublication: "2025-09-06",
         resume: "Mystic Realms Online server merge aims to boost community activity.",
         createur: "Rafael",
-        typeDeJeu: "Adventure"
+        typeDeJeu: "Adventure",
+        bookmarkedPar: []
     },
     {
         id: 18,
@@ -177,7 +194,8 @@ export const nouvelles = [
         datePublication: "2025-09-05",
         resume: "Kart Racers 2 update adds tracks, characters, and customization options.",
         createur: "Bob",
-        typeDeJeu: "Racing"
+        typeDeJeu: "Racing",
+        bookmarkedPar: []
     },
     {
         id: 19,
@@ -187,7 +205,8 @@ export const nouvelles = [
         datePublication: "2025-09-04",
         resume: "Ancient Tactics adds historical campaigns inspired by real battles.",
         createur: "Alexis",
-        typeDeJeu: "Strategy"
+        typeDeJeu: "Strategy",
+        bookmarkedPar: []
     },
     {
         id: 20,
@@ -197,6 +216,7 @@ export const nouvelles = [
         datePublication: "2025-09-03",
         resume: "Shadow Ninja live-action movie announced with original storyline.",
         createur: "Rafael",
-        typeDeJeu: "Stealth"
+        typeDeJeu: "Stealth",
+        bookmarkedPar: []
     }
 ];

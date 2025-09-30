@@ -5,7 +5,7 @@ import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import Nouvelle from "./Nouvelle.jsx";
 import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
-import {use, useContext, useState} from "react";
+import {useContext, useState} from "react";
 import CreerNouvelle from "./CreerNouvelle.jsx";
 import LoginContext from "./LoginContext.jsx";
 
@@ -14,10 +14,10 @@ const Demo = styled('div')(() => ({
 }));
 
 
-export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert}) {
+export default function ListeBookmarks({creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert}) {
     const {listeNouvelles} = useContext(ListeNouvellesContext)
+    const {login} = useContext(LoginContext);
     const [nouvelleEnModification, setNouvelleEnModification] = useState(null)
-    const {login} = useContext(LoginContext)
 
     const identifierNouvelle = (id) => {
         setNouvelleEnModification(listeNouvelles.find(nouvelle => nouvelle.id === id))
@@ -26,20 +26,21 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
     return (
         <>
             <CreerNouvelle nouvelleEnModification={nouvelleEnModification} setNouvelleEnModification={setNouvelleEnModification} creerNouvelleDrawerOuvert={creerNouvelleDrawerOuvert} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert}/>
-            <Box sx={{ flexGrow: 1, width:"100%", }}>
-                    <Grid
-                        width="100%"
-                    >
-                        <Demo>
-                            <List>
-                                {listeNouvelles.map(nouvelle =>
-                                    <Nouvelle key={nouvelle.id} nouvelleIdGetter={identifierNouvelle} setNouvelleEnModification={setNouvelleEnModification} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert} estDejaBookmarked={nouvelle.bookmarkedPar.includes(login)} {...nouvelle}/>
-                                )}
-                            </List>
-                        </Demo>
-                    </Grid>
+            <Box sx={{ flexGrow: 1, width:"100%", minHeight:"100vh", backgroundColor:"#1f1f1f" }}>
+                <Grid
+                    width="100%"
+                >
+                    <Demo>
+                        <List>
+                            {listeNouvelles.filter(
+                                nouvelle => nouvelle.bookmarkedPar.includes(login)
+                            ).map(nouvelle =>
+                                <Nouvelle key={nouvelle.id} nouvelleIdGetter={identifierNouvelle} setNouvelleEnModification={setNouvelleEnModification} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert} estDejaBookmarked={true} {...nouvelle}/>
+                            )}
+                        </List>
+                    </Demo>
+                </Grid>
             </Box>
         </>
     );
 }
-

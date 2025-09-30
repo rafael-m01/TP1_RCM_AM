@@ -20,13 +20,10 @@ import CreerNouvelle from "./CreerNouvelle.jsx";
 import {styled} from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 
-const more = ['Statistiques', 'Se déconnecter'];
-
-function ResponsiveAppBar({setCreerNouvelleOuvert}) {
+function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const {login, setLogin} = useContext(LoginContext);
-
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -43,17 +40,24 @@ function ResponsiveAppBar({setCreerNouvelleOuvert}) {
         setAnchorElUser(null);
     };
 
-    const handleClickMoreMenuOption = (setting) => {
-        if(setting === 'Se déconnecter'){
+    const handleClickMoreMenuOption = (menu) => {
+        if(menu === "Se déconnecter"){
             setLogin("Se connecter")
-        }else{
+            setPageBookmarkOuverte(false)
+        }else if(menu === "Statistiques"){
             console.log("Stats!")
+        }else{
+            setPageBookmarkOuverte(true)
         }
         handleCloseUserMenu()
     }
 
     const handleDrawerCreerNouvelleOpen = () => {
         setCreerNouvelleOuvert(true);
+    };
+
+    const handleRetourListeNouvelles = () => {
+        setPageBookmarkOuverte(false);
     };
 
     const AppBar = styled(MuiAppBar)(({theme}) => ({
@@ -80,6 +84,7 @@ function ResponsiveAppBar({setCreerNouvelleOuvert}) {
                                 color: 'inherit',
                                 textDecoration: 'none',
                             }}
+                            onClick={handleRetourListeNouvelles}
                         >
                             [GameNews]
                         </Typography>
@@ -135,7 +140,7 @@ function ResponsiveAppBar({setCreerNouvelleOuvert}) {
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'space-evenly' }}>
                             <Box key={"Se connecter"} sx={{ display: 'flex', alignItems: 'center' }}>
-                                <SplitButton />
+                                <SplitButton setPageBookmarkOuverte={setPageBookmarkOuverte} />
                             </Box>
                             <Button
                                 key={"Créer une nouvelle"}
@@ -160,32 +165,38 @@ function ResponsiveAppBar({setCreerNouvelleOuvert}) {
                             </Tooltip>
                             <Menu
                                 sx={{ mt: '45px' }}
-                                id="menu-appbar"
+                                id="menu-user"
                                 anchorEl={anchorElUser}
                                 anchorOrigin={{
-                                    vertical: 'top',
+                                    vertical: 'bottom',
                                     horizontal: 'right',
                                 }}
-                                keepMounted
                                 transformOrigin={{
                                     vertical: 'top',
                                     horizontal: 'right',
                                 }}
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
+                                disablePortal
                             >
-                                {more.map((setting) => (
-                                    <MenuItem key={setting} onClick={() => handleClickMoreMenuOption(setting)}>
-                                        <Typography sx={{ textAlign: 'center' }} >{setting}</Typography>
+                                {login !== "Se connecter"?
+                                    <MenuItem key={"Bookmarks"} onClick={() => handleClickMoreMenuOption("Bookmarks")}>
+                                        <Typography sx={{ textAlign: 'center' }} >Bookmarks</Typography>
                                     </MenuItem>
-                                ))}
+                                    :null
+                                }
+                                <MenuItem key={"Statistiques"} onClick={() => handleClickMoreMenuOption("Statistiques")}>
+                                    <Typography sx={{ textAlign: 'center' }} >Statistiques</Typography>
+                                </MenuItem>
+                                <MenuItem key={"Se déconnecter"} onClick={() => handleClickMoreMenuOption("Se déconnecter")}>
+                                    <Typography sx={{ textAlign: 'center' }} >Se déconnecter</Typography>
+                                </MenuItem>
                             </Menu>
                         </Box>
                     </Toolbar>
                 </Container>
             </AppBar>
         <Toolbar/>
-
         </>
     );
 }

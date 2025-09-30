@@ -7,16 +7,45 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import LoginContext from "./LoginContext.jsx";
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
 
-export default function Nouvelle({id, titre, image, texteComplet, datePublication, resume, createur, nouvelleIdGetter, setCreerNouvelleDrawerOuvert}){
+export default function Nouvelle({id, titre, image, texteComplet, datePublication, resume, createur, nouvelleIdGetter, setCreerNouvelleDrawerOuvert, estDejaBookmarked}){
     const {login} = useContext(LoginContext)
+    const [estBookmarked, setEstBookmarked] = useState(estDejaBookmarked)
+    const {setListeNouvelles} = useContext(ListeNouvellesContext)
 
     const handleModifierNouvelle = () => {
         nouvelleIdGetter(id);
         setCreerNouvelleDrawerOuvert(true);
     };
+
+    const handleAjouterBookmark = () => {
+        setEstBookmarked(true)
+        setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>
+            nouvelle.id === id
+                ? {...nouvelle,
+                    bookmarkedPar:[...nouvelle.bookmarkedPar, login]}
+                : nouvelle
+        )));
+    };
+
+    const handleRetirerBookmark = () => {
+        setEstBookmarked(false)
+        setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>
+            nouvelle.id === id
+                ? {...nouvelle,
+                    bookmarkedPar:nouvelle.bookmarkedPar.filter(utilisateur => utilisateur !== login)}
+                : nouvelle
+        )));
+    };
+
+    if(estBookmarked !== estDejaBookmarked){
+        setEstBookmarked(estDejaBookmarked);
+    }
 
     return(
         <ListItem
@@ -33,6 +62,16 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
                                 <DeleteIcon sx={{color:"white"}}/>
                             </IconButton>
                         </>: null}
+                    {login !== "Se connecter"?
+                        estBookmarked?
+                        <IconButton edge="end" aria-label="bookmark">
+                            <BookmarkIcon sx={{color:"white"}} onClick={handleRetirerBookmark}/>
+                        </IconButton>:
+                        <IconButton edge="end" aria-label="bookmark">
+                            <BookmarkBorderIcon sx={{color:"white"}} onClick={handleAjouterBookmark}/>
+                        </IconButton>
+                        :null
+                    }
                 </Box>
             }
             sx={{ borderBottom:"solid", borderBottomWidth:1, borderBottomColor:"white"}}
