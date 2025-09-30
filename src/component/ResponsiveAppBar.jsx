@@ -1,5 +1,4 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -16,11 +15,32 @@ import GamepadIcon from '@mui/icons-material/Gamepad';
 import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
 import NestedList from "./NestedList.jsx";
-import CreerNouvelle from "./CreerNouvelle.jsx";
 import {styled} from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 
-function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
+
+const more = ['Statistiques', 'Se déconnecter'];
+
+// Correction : On ajoute 'drawerWidth' à la liste des props à ne pas transmettre au DOM
+const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== 'open' && prop !== 'drawerWidth',
+})(({theme, open, drawerWidth}) => ({
+    transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+    }),
+    ...(open && {
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginRight: drawerWidth,
+    }),
+}));
+
+
+function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte, rechercheOuvert, handleRechercheOpen, drawerWidth}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const {login, setLogin} = useContext(LoginContext);
@@ -56,20 +76,21 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
         setCreerNouvelleOuvert(true);
     };
 
+
     const handleRetourListeNouvelles = () => {
         setPageBookmarkOuverte(false);
     };
 
-    const AppBar = styled(MuiAppBar)(({theme}) => ({
-        zIndex: theme.zIndex.drawer +1
-    }))
+    //const AppBar = styled(MuiAppBar)(({theme}) => ({
+    //    zIndex: theme.zIndex.drawer +1
+    //}))
 
     return (
         <>
-            <AppBar position="fixed" color="default">
+            <AppBar position="fixed" open={rechercheOuvert} drawerWidth={drawerWidth} color="default">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <GamepadIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                        <GamepadIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>
                         <Typography
                             variant="h6"
                             noWrap
@@ -77,7 +98,7 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
                             href="#app-bar-with-responsive-menu"
                             sx={{
                                 mr: 2,
-                                display: { xs: 'none', md: 'flex' },
+                                display: {xs: 'none', md: 'flex'},
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
@@ -89,7 +110,7 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
                             [GameNews]
                         </Typography>
 
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -98,7 +119,7 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
                                 onClick={handleOpenNavMenu}
                                 color="inherit"
                             >
-                                <MenuIcon />
+                                <MenuIcon/>
                             </IconButton>
                             <Menu
                                 id="menu-appbar"
@@ -114,12 +135,12 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
                                 }}
                                 open={Boolean(anchorElNav)}
                                 onClose={handleCloseNavMenu}
-                                sx={{ display: { xs: 'block', md: 'none' } }}
+                                sx={{display: {xs: 'block', md: 'none'}}}
                             >
                                 <NestedList handleDrawerCreerNouvelleOpen={handleDrawerCreerNouvelleOpen}/>
                             </Menu>
                         </Box>
-                        <GamepadIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                        <GamepadIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
                         <Typography
                             variant="h5"
                             noWrap
@@ -127,7 +148,7 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
                             href="#app-bar-with-responsive-menu"
                             sx={{
                                 mr: 2,
-                                display: { xs: 'flex', md: 'none' },
+                                display: {xs: 'flex', md: 'none'},
                                 flexGrow: 1,
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
@@ -138,34 +159,48 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
                         >
                             [GameNews]
                         </Typography>
+
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'space-evenly' }}>
                             <Box key={"Se connecter"} sx={{ display: 'flex', alignItems: 'center' }}>
                                 <SplitButton setPageBookmarkOuverte={setPageBookmarkOuverte} />
                             </Box>
                             <Button
                                 key={"Créer une nouvelle"}
-                                onClick={login !== "Se connecter"?handleDrawerCreerNouvelleOpen:null}
-                                sx={{ my: 2, color: 'black', fontWeight:"bold", display: 'block', '&:hover':{backgroundColor: 'rgba(125, 125, 125, 0.2)'},}}
+                                onClick={login !== "Se connecter" ? handleDrawerCreerNouvelleOpen : null}
+                                sx={{
+                                    my: 2,
+                                    color: 'black',
+                                    fontWeight: "bold",
+                                    display: 'block',
+                                    '&:hover': {backgroundColor: 'rgba(125, 125, 125, 0.2)'},
+                                }}
                             >
                                 Créer une nouvelle
                             </Button>
                             <Button
                                 key="Recherche"
-                                onClick={null}
-                                sx={{ my: 2, color: 'black', fontWeight:"bold", display: 'block', '&:hover':{backgroundColor: 'rgba(125, 125, 125, 0.2)'},}}
+                                onClick={handleRechercheOpen}
+                                sx={{
+                                    my: 2,
+                                    color: 'black',
+                                    fontWeight: "bold",
+                                    display: 'block',
+                                    '&:hover': {backgroundColor: 'rgba(125, 125, 125, 0.2)'},
+                                }}
                             >
                                 Recherche
                             </Button>
                         </Box>
-                        <Box sx={{ flexGrow: 0 }}>
+                        <Box sx={{flexGrow: 0}}>
                             <Tooltip title="More">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
                                     <MoreHorizIcon/>
                                 </IconButton>
                             </Tooltip>
                             <Menu
                                 sx={{ mt: '45px' }}
                                 id="menu-user"
+
                                 anchorEl={anchorElUser}
                                 anchorOrigin={{
                                     vertical: 'bottom',
@@ -182,6 +217,7 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
                                 {login !== "Se connecter"?
                                     <MenuItem key={"Bookmarks"} onClick={() => handleClickMoreMenuOption("Bookmarks")}>
                                         <Typography sx={{ textAlign: 'center' }} >Bookmarks</Typography>
+
                                     </MenuItem>
                                     :null
                                 }
@@ -200,4 +236,5 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte}) {
         </>
     );
 }
+
 export default ResponsiveAppBar;
