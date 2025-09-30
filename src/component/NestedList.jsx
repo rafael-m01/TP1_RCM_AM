@@ -11,11 +11,13 @@ import PersonIcon from '@mui/icons-material/Person';
 import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
 import Divider from "@mui/material/Divider";
+import { saveLogin } from "../scripts/loginStorage.js";
 
 export default function NestedList({handleDrawerCreerNouvelleOpen}) {
     const [open, setOpen] = React.useState(false);
     const utilisateurs = ['Alexis', 'Rafael', 'Bob', 'Admin'];
     const {setLogin} = useContext(LoginContext)
+
 
     const handleClick = () => {
         setOpen(!open);
@@ -23,6 +25,7 @@ export default function NestedList({handleDrawerCreerNouvelleOpen}) {
 
     const handleLoginUtilisateurClick = (utilisateur) => {
         setLogin(utilisateur)
+        saveLogin(utilisateur);
     }
 
 
