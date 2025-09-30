@@ -17,7 +17,7 @@ import {
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const criteriaOptions = {
-    'Catégorie de jeu': ['Sandbox', 'Plateforme', 'RPG', 'Stratégie', 'Action'],
+    'Catégorie de jeu': ["Sandbox", "Platformer", "Simulator", "First-person", "Adventure", "Puzzle", "Fighting", "Racing", "Stealth", "Strategy"],
     'Date': ["Aujourd'hui", 'Cette semaine', 'Ce mois-ci', 'Cette année'],
     'Taille de la nouvelle': ['Courte', 'Moyenne', 'Longue'],
     'Titre': [],
