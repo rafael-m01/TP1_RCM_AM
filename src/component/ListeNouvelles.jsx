@@ -42,9 +42,9 @@ const checkDate = (nouvelleDateStr, critereValue) => {
     }
 };
 
-const checkTaille = (contenu, critereValue) => {
-    if (typeof contenu !== 'string') return false;
-    const length = contenu.length;
+const checkTaille = (texteComplet, critereValue) => {
+    if (typeof texteComplet !== 'string') return false;
+    const length = texteComplet.length;
     switch (critereValue) {
         case 'Courte':
             return length < 1000;
@@ -76,17 +76,17 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
         return appliedCriteria.some(critere => {
             const { key, value } = critere;
             switch (key) {
-                // CORRECTION : Utilisation des bonnes propriétés de l'objet 'nouvelle'
+                // Utilisation des bonnes propriétés de l'objet 'nouvelle'
                 case 'Titre':
                     return nouvelle.titre && nouvelle.titre.toLowerCase().includes(value.toLowerCase());
                 case 'Catégorie de jeu':
-                    // On utilise 'typeDeJeu' au lieu de 'categorie'
+                    // On utilise 'typeDeJeu'
                     return nouvelle.typeDeJeu && nouvelle.typeDeJeu.toLowerCase() === value.toLowerCase();
                 case 'Date':
-                    // On utilise 'datePublication' au lieu de 'date'
+                    // On utilise 'datePublication'
                     return checkDate(nouvelle.datePublication, value);
                 case 'Taille de la nouvelle':
-                    // On utilise 'texteComplet' au lieu de 'contenu'
+                    // On utilise 'texteComplet'
                     return checkTaille(nouvelle.texteComplet, value);
                 default:
                     return false;

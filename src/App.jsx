@@ -46,10 +46,10 @@ const DrawerHeader = styled('div')(({theme}) => ({
 
 function App() {
     const theme = useTheme();
-    // 1. L'état du login est initialisé en premier
+    // L'état du login est initialisé en premier
     const [login, setLogin] = useState(getLogin);
 
-    // 2. L'état des critères est ensuite initialisé EN FONCTION de l'utilisateur connecté
+    // L'état des critères est ensuite initialisé EN FONCTION de l'utilisateur connecté
     const [appliedCriteria, setAppliedCriteria] = useState(() => getCriteriaForUser(login));
 
     const [listeNouvelles, setListeNouvelles] = useState(getNouvelles);
