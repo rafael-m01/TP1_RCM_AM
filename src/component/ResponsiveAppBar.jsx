@@ -42,39 +42,47 @@ function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte,
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const {login, setLogin} = useContext(LoginContext);
 
+    //handle MUI pour aider la position de l'ouverture du menu 3 barres mobile
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
+    //handle MUI pour aider la position de l'ouverture du menu 3 points
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
+    //handle MUI pour la fermeture du menu ouvrant 3 barres mobile
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
+    //handle MUI pour la fermeture du menu ouvrant 3 points
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
 
-
+    //handle s'occupant du fonctionnement de chaque option du menu 3 points
     const handleClickMoreMenuOption = (menu) => {
+
         if(menu === "Se déconnecter"){
+            //Change le login au default
             setLogin("Se connecter")
-            setPageBookmarkOuverte(false)
+            //Ramène à la page liste nouvelles de base si on était
+            // sur la liste bookmarks en cliquant se déconnecter
+            handleRetourListeNouvelles()
         }else if(menu === "Statistiques"){
             console.log("Stats!")
         }else{
+            //Ouvre la page de la liste de bookmarks de l'utilisateur
             setPageBookmarkOuverte(true)
         }
         handleCloseUserMenu()
     }
 
+    //handle pour ouvrir la section creerNouvelle
     const handleDrawerCreerNouvelleOpen = () => {
         setCreerNouvelleDrawerOuvert(true);
     };
 
-
+    //handle pour ramener à la page liste nouvelles de base si on était sur la liste bookmarks
     const handleRetourListeNouvelles = () => {
         setPageBookmarkOuverte(false);
     };
@@ -160,6 +168,7 @@ function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte,
                             </Box>
                             <Button
                                 key={"Créer une nouvelle"}
+                                //Ne place le listener sur le bouton creerNouvelle que si un utilisateur est connecté
                                 onClick={login !== "Se connecter" ? handleDrawerCreerNouvelleOpen : null}
                                 sx={{
                                     my: 2,
@@ -207,10 +216,10 @@ function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte,
                                 onClose={handleCloseUserMenu}
                                 disablePortal
                             >
+                                {/* N'affiche l'option de menu Bookmarks que si un utilisateur est connecté */}
                                 {login !== "Se connecter"?
                                     <MenuItem key={"Bookmarks"} onClick={() => handleClickMoreMenuOption("Bookmarks")}>
                                         <Typography sx={{ textAlign: 'center' }} >Bookmarks</Typography>
-
                                     </MenuItem>
                                     :null
                                 }

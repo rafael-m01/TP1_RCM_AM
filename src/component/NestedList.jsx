@@ -19,16 +19,16 @@ export default function NestedList({handleDrawerCreerNouvelleOpen}) {
     const {setLogin} = useContext(LoginContext)
 
 
+    //handle MUI pour fermer ou ouvrir la nestedList du menu mobile
     const handleClick = () => {
         setOpen(!open);
     };
 
+    //handle pour changer l'utilisateur actif à l'utilisateur selectionné dans le menu
     const handleLoginUtilisateurClick = (utilisateur) => {
         setLogin(utilisateur)
         saveLogin(utilisateur);
     }
-
-
 
     return (
         <List

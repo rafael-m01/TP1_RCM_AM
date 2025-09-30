@@ -19,6 +19,8 @@ export default function ListeBookmarks({creerNouvelleDrawerOuvert, setCreerNouve
     const {login} = useContext(LoginContext);
     const [nouvelleEnModification, setNouvelleEnModification] = useState(null)
 
+    //handle utilisé pour récupérer l'id de la nouvelle, est envoyé en props à la nouvelle
+    //Sert à retrouver la nouvelle et ses infos pour pouvoir les afficher dans la modification de nouvelles
     const identifierNouvelle = (id) => {
         setNouvelleEnModification(listeNouvelles.find(nouvelle => nouvelle.id === id))
     }
@@ -32,9 +34,12 @@ export default function ListeBookmarks({creerNouvelleDrawerOuvert, setCreerNouve
                 >
                     <Demo>
                         <List>
+                            {/* Parcours la map et ne render que les nouvelles avec l'utilisateur courrant enregistré dans bookmarkedPar */}
                             {listeNouvelles.filter(
                                 nouvelle => nouvelle.bookmarkedPar.includes(login)
                             ).map(nouvelle =>
+                                //Envois identifierNouvelle au children pour récupéré l'id
+                                //Set estDejaBookmarked à true pour que les nouvelles bookmarked apparaissent à l'affichage initial
                                 <Nouvelle key={nouvelle.id} nouvelleIdGetter={identifierNouvelle} setNouvelleEnModification={setNouvelleEnModification} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert} estDejaBookmarked={true} {...nouvelle}/>
                             )}
                         </List>

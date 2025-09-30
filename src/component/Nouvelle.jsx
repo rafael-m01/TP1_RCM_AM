@@ -18,14 +18,17 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
     const [estBookmarked, setEstBookmarked] = useState(estDejaBookmarked)
     const {setListeNouvelles} = useContext(ListeNouvellesContext)
 
+    //handle appelé au click du bouton modifier, identifie la nouvelle avec le getter d'id et ouvre la section de modification/creation de nouvelle
     const handleModifierNouvelle = () => {
         nouvelleIdGetter(id);
         setCreerNouvelleDrawerOuvert(true);
     };
 
-
+    //handle appelé au click du bouton bookmark vide, ajoute l'utilisateur actif à la liste de bookmarkedPar de la nouvelle
     const handleAjouterBookmark = () => {
+        //Change estBookmarked à true pour que l'affichage du bouton change au bookmark plein
         setEstBookmarked(true)
+        //Parcours la liste de nouvelles et ajoute l'utilisateur à bookmarkedPar pour la nouvelle cliquée
         setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>
             nouvelle.id === id
                 ? {...nouvelle,
@@ -35,7 +38,9 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
     };
 
     const handleRetirerBookmark = () => {
+        //Change estBookmarked à false pour que l'affichage du bouton change au bookmark vide
         setEstBookmarked(false)
+        //Parcours la liste de nouvelles et et retire l'utilisateur de bookmarkedPar pour la nouvelle cliquée
         setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>
             nouvelle.id === id
                 ? {...nouvelle,
@@ -44,6 +49,7 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
         )));
     };
 
+    //S'assure quele state estBookmarked soit synchronisé avec l'info de bookmark enregistrée dans la nouvelle
     if(estBookmarked !== estDejaBookmarked){
         setEstBookmarked(estDejaBookmarked);
     }
@@ -54,6 +60,7 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
             secondaryAction={
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <span style={{ color: 'grey', fontSize: '0.8rem' }}>{datePublication}</span>
+                    {/* Ne fait apparaitre les boutons modifier et delete que si la nouvelle appartient à l'utilisateur ou s'il est un admin */}
                     {login === createur || login === "Admin"?
                         <>
                             <IconButton edge="end" aria-label="delete">
@@ -63,7 +70,9 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
                                 <DeleteIcon sx={{color:"white"}}/>
                             </IconButton>
                         </>: null}
+                    {/* Ne fait apparaitre le bookmark que si un utilisateur est connecté */}
                     {login !== "Se connecter"?
+                        //Change le rendu et l'effet du bouton bookmark initial s'il est déjà bookmarked par l'utilisateur ou non
                         estBookmarked?
                         <IconButton edge="end" aria-label="bookmark">
                             <BookmarkIcon sx={{color:"white"}} onClick={handleRetirerBookmark}/>

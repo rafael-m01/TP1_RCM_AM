@@ -11,7 +11,7 @@ import MenuList from '@mui/material/MenuList';
 import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
 
-const options = ['Alexis', 'Rafael', 'Bob', 'Admin'];
+const utilisateurs = ['Alexis', 'Rafael', 'Bob', 'Admin'];
 
 export default function SplitButton({setPageBookmarkOuverte}) {
     const [open, setOpen] = React.useState(false);
@@ -19,11 +19,9 @@ export default function SplitButton({setPageBookmarkOuverte}) {
     const [label, setLabel] = React.useState("Se connecter");
     const {login, setLogin} = useContext(LoginContext)
 
-    const handleClick = () => {
-
-    };
-
+    //handle qui s'occupe de changer l'utilisateur en cours à l'utilisateur choisi
     const handleMenuItemClick = (event, option) => {
+        //Renvois à la page de base liste nouvelles si l'utilisateur est changé en étant dans la liste bookmarks
         if(login !== option){
             setPageBookmarkOuverte(false);
         }
@@ -32,10 +30,12 @@ export default function SplitButton({setPageBookmarkOuverte}) {
         setOpen(false);
     };
 
+    //handle MUI s'occupant de fermer et ouvrir les choix du splitButton
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
 
+    //handle MUI s'occupant de fermer les choix du splitButton
     const handleClose = (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
@@ -52,7 +52,7 @@ export default function SplitButton({setPageBookmarkOuverte}) {
                 aria-label="Button group with a nested menu"
                 color="inherit"
             >
-                <Button onClick={handleClick} sx={{fontWeight:"bold"}}>{login}</Button>
+                <Button sx={{fontWeight:"bold"}}>{login}</Button>
                 <Button
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}
@@ -84,7 +84,8 @@ export default function SplitButton({setPageBookmarkOuverte}) {
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList id="split-button-menu" autoFocusItem>
-                                    {options.map((option) => (
+                                    {/* Parcous la map utilisateurs et créé une option de menu pour chaque */}
+                                    {utilisateurs.map((option) => (
                                         <MenuItem
                                             key={option}
                                             selected={option === label}

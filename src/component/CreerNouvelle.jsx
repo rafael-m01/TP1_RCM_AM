@@ -19,19 +19,22 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'relative',
     alignItems: 'center',
     paddingTop: "70px",
-    // necessary for content to be below app bar
+    // necessary for content to be below app bar (commentaire généré MUI)
     ...theme.mixins.toolbar,
     justifyContent: 'flex-start',
 }));
-var idGlobal = 21;
 
 export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert, nouvelleEnModification, setNouvelleEnModification}) {
     const typesDeJeux = ["Sandbox", "Platformer", "Simulator", "First-person", "Adventure", "Puzzle", "Fighting", "Racing", "Stealth", "Strategy"]
     const {login} = useContext(LoginContext)
     const {setListeNouvelles} = useContext(ListeNouvellesContext)
 
+    //handle appelé pour fermer la section d'ajout ou modification
     const handleDrawerClose = () => {
+        //Set DrawerOuvert à false pour refermer la section CreerNouvelle
         setCreerNouvelleDrawerOuvert(false);
+        //Remet le state NouvelleEnModification à null pour s'assurer que les informations d'une nouvelle
+        // en modification ne restent pas à la prochaine ouverture de la section
         setNouvelleEnModification(null);
     };
 
@@ -39,11 +42,13 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
         backgroundColor:"#1f1f1f"
     }));
 
+    //Fonction pour ajouter une nouvelle a la liste avec les données du form
     function ajouterNouvelle(event){
         event.preventDefault()
         const formData = new FormData(event.target);
+        //Ajout de chaque donnée à la nouvelle nouvelle
         const nouvelle = {
-            id:idGlobal,
+            id:crypto.randomUUID(),
             titre:formData.get("titre"),
             image:formData.get("image"),
             texteComplet:formData.get("texteComplet"),
@@ -52,13 +57,17 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
             createur:login,
             typeDeJeux:formData.get("typeDeJeux")
         }
+        //Ajout de la nouvelle à la liste avec le setter du state
         setListeNouvelles((oldListeNouvelles) => ([nouvelle, ...oldListeNouvelles]))
+        //Set DrawerOuvert à false pour refermer la section CreerNouvelle après l'ajout
         setCreerNouvelleDrawerOuvert(false);
     }
 
+    //Fonction pour modifier une nouvelle existante dans la liste de nouvelles avec les données du form
     function modifierNouvelle(event){
         event.preventDefault()
         const formData = new FormData(event.target);
+        //Parcours la liste de nouvelle et change les données si l'id correspond à la nouvelle en modification
         setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>
             nouvelle.id === nouvelleEnModification.id
                 ? {...nouvelle,
@@ -71,8 +80,11 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
                     typeDeJeux:formData.get("typeDeJeux")}
                 : nouvelle
         )));
-        setNouvelleEnModification(null);
+        //Set DrawerOuvert à false pour refermer la section CreerNouvelle
         setCreerNouvelleDrawerOuvert(false);
+        //Remet le state NouvelleEnModification à null pour s'assurer que les informations d'une nouvelle
+        // en modification ne restent pas à la prochaine ouverture de la section
+        setNouvelleEnModification(null);
     }
 
     return (

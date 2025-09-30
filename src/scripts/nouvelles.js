@@ -1,6 +1,6 @@
 export const nouvelles = [
     {
-        id: 1,
+        id: "e876cc89-fd73-4b20-a9c5-d28c285e0df9",
         titre: "Legendary Quest 3 Announced with Next-Gen Graphics",
         image: "/images/thumbnail-1.jpg",
         texteComplet: "The gaming world erupted with excitement today as developers officially announced Legendary Quest 3, the long-awaited sequel in the acclaimed RPG series. The reveal came during a live-streamed event, where breathtaking next-generation footage was showcased to an eager audience.\n\nThe game promises to deliver an expansive open world larger and more dynamic than ever before, featuring cutting-edge visuals powered by the studio’s new engine. Players can look forward to dynamic weather effects, realistic day-night cycles, and immersive landscapes teeming with life. AI companions have also been overhauled, with smarter decision-making and unique personalities that evolve throughout the story.\n\nPerhaps the most groundbreaking feature is the confirmation of seamless cross-platform multiplayer. Adventurers will be able to team up with friends across PC, PlayStation, and Xbox without barriers, tackling quests and uncovering the mysteries of the world together. With promises of deeper storylines, innovative gameplay systems, and stunning visuals, Legendary Quest 3 is shaping up to be the most ambitious entry in the franchise to date.",
@@ -11,7 +11,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 2,
+        id: "107c00d7-63ef-4ca2-86de-d9915dedb979",
         titre: "Indie Hit 'Pixel Pirates' Hits 1 Million Players",
         image: "/images/thumbnail-2.jpg",
         texteComplet: "Pixel Pirates, the charming indie title that sailed onto the scene earlier this year, has officially crossed the 1 million player milestone. The announcement came via a heartfelt post from the developers, who expressed gratitude to their growing community.\n\nThe retro-inspired game blends nostalgic 8-bit visuals with fast-paced naval battles and cooperative multiplayer. Players take on the role of aspiring captains, building their crews, upgrading ships, and exploring procedurally generated islands filled with treasure and danger. Its addictive gameplay loop and quirky sense of humor have made it a hit among both casual and hardcore gamers.\n\nFans can expect more content on the horizon, as the developers confirmed ongoing updates with new maps, customization options, and seasonal events. With its mix of nostalgia and fresh mechanics, Pixel Pirates has proven that small studios can still make a big splash in today’s competitive gaming industry.",
@@ -22,7 +22,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 3,
+        id: "70e02529-cae4-4fed-9487-e26083a97f1f",
         titre: "VR Racing Game 'HyperDrive' Launches Beta Next Week",
         image: "/images/thumbnail-3.jpg",
         texteComplet: "Racing fans and VR enthusiasts alike are gearing up for the arrival of HyperDrive, a brand-new virtual reality racing experience set to launch its beta next week. Developed by Velocity Interactive, the game aims to redefine high-speed thrills in VR.\n\nHyperDrive offers an array of futuristic tracks that twist through neon-lit cityscapes, desert canyons, and even gravity-defying space circuits. Each vehicle is finely tuned with realistic physics, providing players with a sense of speed and control unlike anything seen before in VR. To enhance immersion, players will also be able to customize racing suits and cockpit interiors, giving them a unique identity on the track.\n\nThe developers have confirmed that the beta will feature both single-player time trials and multiplayer modes, allowing racers to test their reflexes against friends and strangers alike. With fully responsive motion controls and a focus on accessibility, HyperDrive is positioning itself as a must-try experience for fans of adrenaline-pumping VR gaming.",
@@ -33,7 +33,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 4,
+        id: "8d8cd04d-dfba-4aed-86d7-a933e34f514d",
         titre: "Massive Expansion Coming to 'Dungeon Realms'",
         image: "/images/thumbnail-4.jpg",
         texteComplet: "The fantasy world of Dungeon Realms is about to get a whole lot bigger. Developers announced a massive new expansion that will add fresh dungeons, formidable bosses, and entirely new character classes to the beloved RPG.\n\nThe expansion promises a wide variety of content for players of all levels. From treacherous caverns filled with traps to towering fortresses guarded by mythical beasts, the new dungeons are designed to challenge even the most seasoned adventurers. Meanwhile, the addition of new classes will open up fresh playstyles, encouraging players to experiment with different builds and strategies.\n\nOn top of new gameplay content, the developers are also enhancing systems that fans have long requested improvements for. Loot mechanics will be reworked to offer more rewarding treasure hunts, while guild features will see major upgrades to better support large groups of players. With so many changes packed into one update, Dungeon Realms is cementing itself as one of the most dynamic fantasy RPGs on the market.",
@@ -44,7 +44,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 5,
+        id: "8ff81408-7081-4bd5-9c42-e3342f2a906e",
         titre: "'Cyberpunk Legends' Adds Photo Mode in Latest Update",
         image: "/images/thumbnail-5.jpg",
         texteComplet: "Fans of Cyberpunk Legends can finally unleash their inner photographers, as the latest update introduces a fully-featured photo mode. The addition has been one of the most requested features since launch, and the developers have delivered it with a wide range of tools.\n\nPlayers can now capture breathtaking moments in the neon-soaked city, adjusting camera angles, filters, lighting, and even depth of field to create cinematic images. Whether it’s showcasing a customized vehicle racing down rain-slicked streets or capturing the city skyline at dawn, the photo mode provides endless creative opportunities.\n\nThe update also includes several quality-of-life improvements and bug fixes, but it’s clear that the spotlight belongs to this long-awaited feature. With the ability to freeze time and frame their favorite scenes, players are already flooding social media with stunning shots that highlight the game’s vibrant world.",
@@ -55,7 +55,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 6,
+        id: "7b7269a3-1712-4815-82b7-75a01c1d5c09",
         titre: "Retro Platformer 'JumpQuest' Celebrates 5-Year Anniversary",
         image: "/images/thumbnail-6.jpg",
         texteComplet: "It’s been five years since JumpQuest first leapt onto consoles and PC, and the retro platformer is celebrating its anniversary with a big thank-you to fans. To mark the occasion, the developers have released free DLC packed with new levels, skins, and music tracks.\n\nThe new levels bring fresh challenges for longtime players, including tricky platforming sections that test reflexes and timing. A selection of playful skins and an updated soundtrack featuring remixed fan favorites round out the celebratory content. Players are already praising the DLC for capturing the magic of what made JumpQuest such a beloved game in the first place.\n\nIn a surprise twist, the studio hinted at an upcoming sequel, sparking speculation and excitement across the community. While details remain scarce, fans are hopeful that a new installment will build on the retro charm while introducing modern innovations.",
@@ -66,7 +66,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 7,
+        id: "2cc3c182-d1b3-491d-9ef7-59a2346487c8",
         titre: "'Galactic Wars' Launches Crossplay Across All Platforms",
         image: "/images/thumbnail-7.jpg",
         texteComplet: "The galaxy just got a lot bigger for fans of Galactic Wars. The developers have officially rolled out crossplay functionality across PC, PlayStation, Xbox, and Nintendo Switch, uniting the community like never before.\n\nThe update means players can now team up or compete with friends regardless of their platform of choice. Alongside crossplay, the patch also introduces a host of improvements, including rebalanced units, brand-new maps, and a revamped matchmaking system designed to create fairer and faster matches. These changes aim to keep the competitive scene healthy and engaging as more players join in.\n\nCommunity feedback has been overwhelmingly positive, with many celebrating the removal of barriers that previously split the player base. By enabling crossplay, Galactic Wars is poised to thrive as one of the most accessible and community-driven strategy games in its genre.",
@@ -77,7 +77,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 8,
+        id: "a4b351c9-37b8-4315-8203-5d7e34659558",
         titre: "'Monster Hunter Origins' Reveals New Beast Species",
         image: "/images/thumbnail-8.jpg",
         texteComplet: "Hunters rejoice—Capcom has unveiled three brand-new monster species for Monster Hunter Origins. Each new creature comes with its own unique attack patterns, habitats, and behaviors, promising to shake up the game’s hunting experience.\n\nThe announcement included detailed previews of each monster, from a towering reptilian beast that uses its environment as a weapon, to a stealthy predator lurking in dense forests, and a massive flying creature that dominates the skies. Each one brings new challenges, forcing players to adapt their gear and tactics to succeed.\n\nThe reveal has reignited excitement in the community, with fans eagerly discussing strategies and preparing to test their skills. By expanding the ecosystem with diverse threats, Monster Hunter Origins continues its tradition of delivering thrilling, high-stakes hunts for veterans and newcomers alike.",
@@ -88,7 +88,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 9,
+        id: "de58872a-356f-44f2-a80f-5f87ef079da3",
         titre: "Sandbox Game 'BlockWorld' Now Supports Modding",
         image: "/images/thumbnail-9.jpg",
         texteComplet: "The creative possibilities of BlockWorld have just expanded dramatically with the introduction of official modding support. Developers announced the release of a powerful new toolkit that allows players to create and share their own custom content.\n\nThe toolkit gives fans the ability to design new blocks, craft unique gameplay mechanics, and even build entirely new adventures. Community creators are already hard at work showcasing their first projects, ranging from mini-games and puzzle maps to expansive questlines. By embracing modding, BlockWorld is ensuring its players have limitless freedom to shape their own experiences.\n\nThis move has been celebrated by fans, who see modding support as a way to keep the game fresh and exciting for years to come. The developers emphasized that the update was built in collaboration with the community, ensuring that the tools are both powerful and easy to use.",
@@ -99,7 +99,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 10,
+        id: "7844c20c-51a0-446f-8801-f8aa4a3f80b6",
         titre: "'Rogue Heist' Speedrun World Record Broken",
         image: "/images/thumbnail-10.jpg",
         texteComplet: "The speedrunning community is buzzing after a new world record was set in Rogue Heist. The record-breaking run, which shaved nearly two minutes off the previous best, was achieved during a live stream watched by thousands of fans.\n\nThe runner showcased flawless execution, lightning-fast reflexes, and creative route planning that surprised even veteran players. The stream quickly went viral, with clips circulating across social media and sparking discussions about potential new strategies. The community has already begun dissecting the run in hopes of replicating or even improving upon the feat.\n\nThis achievement highlights the enduring appeal of Rogue Heist within the speedrunning scene, where players continue to push the limits of what’s possible. With new eyes now turned toward the game, it wouldn’t be surprising to see more records fall in the coming months.",
@@ -110,7 +110,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 11,
+        id: "b099d738-1ce0-41d9-a444-2b72eb91ec59",
         titre: "'Sky Realms' Multiplayer Beta Opens This Weekend",
         image: "/images/thumbnail-11.jpg",
         texteComplet: "The skies are opening up as Sky Realms launches its highly anticipated multiplayer beta this weekend. Players will soon be able to take to the clouds in an MMO world filled with floating islands, aerial battles, and cooperative adventures.\n\nIn the beta, players can form clans of skyfarers, customize their flying vessels, and explore the mysterious floating realms that dot the horizon. Competitive modes will allow groups to battle for territory and rewards, while cooperative content encourages players to band together against powerful enemies.\n\nThe developers emphasized that the beta is designed to test servers, balance combat systems, and gather feedback before full release. With its blend of exploration and aerial combat, Sky Realms is shaping up to be one of the most unique MMO experiences of the year.",
@@ -121,7 +121,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 12,
+        id: "1f61b2c8-4f2c-422e-a623-607f323c493a",
         titre: "New DLC Adds Stealth Missions to 'Agent Zero'",
         image: "/images/thumbnail-12.jpg",
         texteComplet: "Agent Zero, the spy-thriller franchise known for blending action and espionage, has released a new stealth-focused DLC that’s already turning heads. The expansion introduces intricate mission designs that reward patience, planning, and precision.\n\nPlayers will gain access to an arsenal of new gadgets, including silent drones, EMP devices, and advanced hacking tools. Missions are set in a variety of shadowy environments, from heavily guarded skyscrapers to secret underground bunkers. Success will require players to master the art of moving unseen, striking quickly, and disappearing before alarms are raised.\n\nFans have praised the DLC for adding depth and replayability to the base game, offering fresh challenges for veterans and newcomers alike. It marks a return to the franchise’s roots, emphasizing stealth gameplay as its core strength.",
@@ -132,7 +132,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 13,
+        id: "8184c59b-4c51-4c75-9960-770aefad3bec",
         titre: "'Fantasy Farmers' Crosses 500k Players Milestone",
         image: "/images/thumbnail-13.jpg",
         texteComplet: "Fantasy Farmers, the cozy farming simulator that has been steadily growing in popularity, has officially reached 500,000 active players this month. To celebrate the milestone, developers launched a limited-time in-game festival that’s packed with new content.\n\nPlayers logging in during the event will find exclusive crops to plant, decorative items to collect, and festive activities to enjoy with friends. The seasonal celebration underscores what fans love most about Fantasy Farmers: its relaxing pace, colorful visuals, and sense of community.\n\nThe developers expressed gratitude to their growing fanbase and teased future updates that will continue to expand the game’s world. For players seeking a laid-back, wholesome escape, Fantasy Farmers is proving to be the perfect digital retreat.",
@@ -143,7 +143,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 14,
+        id: "6c63574e-2821-48a6-a11b-114214b2895b",
         titre: "'Battle Mechs Online' Announces eSports Tournament",
         image: "/images/thumbnail-14.jpg",
         texteComplet: "The world of competitive mech combat is about to get even more intense. Battle Mechs Online has officially announced its first-ever eSports tournament, inviting players from around the globe to compete in high-stakes battles for glory and prizes.\n\nThe tournament will feature a prize pool, exclusive cosmetic rewards, and opportunities for the top-performing teams to be spotlighted by the developers. Matches will be streamed live, allowing fans to watch the explosive action unfold as players pilot heavily armed mechs in strategic, fast-paced battles.\n\nThis marks a major step forward for Battle Mechs Online, as the game continues to expand its competitive scene. With intense battles and high production values, the upcoming tournament could be the spark that launches the game into the broader eSports spotlight.",
@@ -154,7 +154,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 15,
+        id: "192a5164-c9d4-4911-9472-a7bf305818e2",
         titre: "'Zombie Survival VR' Gets Full Motion Controls",
         image: "/images/thumbnail-15.jpg",
         texteComplet: "Surviving the undead apocalypse just got more immersive. Zombie Survival VR has released a major update that introduces full motion controls, fundamentally transforming how players interact with the terrifying world around them.\n\nWith the new system, players can physically swing melee weapons, fire guns with precision, open doors, and manipulate objects using natural hand movements. The update also adds haptic feedback for supported devices, making every swing, shot, and impact feel more visceral than ever before.\n\nThe community response has been overwhelmingly positive, with players praising the heightened sense of realism and tension. For fans of survival horror and VR alike, this update solidifies Zombie Survival VR as one of the most gripping and immersive experiences in the genre.",
@@ -165,7 +165,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 16,
+        id: "1bd8f454-3503-4b44-b531-9609f092aa35",
         titre: "'Star Colonies' Expands to Mobile Platforms",
         image: "/images/thumbnail-16.jpg",
         texteComplet: "The galaxy is now within reach of your pocket. Star Colonies, the popular sci-fi strategy game, has officially launched on iOS and Android. This mobile release brings the full experience of the PC and console versions, complete with all core features and systems.\n\nPlayers will be able to manage resources, build colonies, and explore distant star systems directly from their phones or tablets. The developers optimized the interface for touch controls, ensuring smooth gameplay on the go. Cloud save support has also been integrated, allowing players to seamlessly switch between devices without losing progress.\n\nThe launch marks a significant step for the franchise, making it accessible to a broader audience. With its deep strategy mechanics and now mobile convenience, Star Colonies is set to continue expanding its reach across the gaming world.",
@@ -176,7 +176,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 17,
+        id: "b0f16b44-d91a-4feb-9bdb-300ccba90367",
         titre: "'Mystic Realms Online' Server Merge Planned",
         image: "/images/thumbnail-17.jpg",
         texteComplet: "Mystic Realms Online is preparing for a major server merge aimed at uniting its player base and improving matchmaking times. The announcement came in an official developer blog, where the team explained that consolidating servers will ensure more vibrant and active worlds.\n\nWhile some players expressed concern over potential character name conflicts, the developers outlined a fair system for resolving duplicates, along with free name change tokens for affected users. They also emphasized that all progress, items, and guilds will be preserved during the transition.\n\nThe merge is expected to breathe new life into the game, fostering larger communities and more consistent activity across regions. For longtime fans, it’s a sign that Mystic Realms Online continues to evolve and adapt to meet the needs of its players.",
@@ -187,7 +187,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 18,
+        id: "ca09ee6a-ff13-4582-be51-b33583f53494",
         titre: "'Kart Racers 2' Adds New Tracks and Characters",
         image: "/images/thumbnail-18.jpg",
         texteComplet: "Start your engines—Kart Racers 2 has just received a content-packed update that introduces new tracks, characters, and customization options. The family-friendly racer is doubling down on fun with fresh ways to play.\n\nThe update adds four new race tracks, including a volcano-themed course and a futuristic city circuit, each with unique hazards and shortcuts. Two new characters join the roster, bringing distinct personalities and special abilities to shake up the competition. Players can also enjoy expanded vehicle customization, allowing them to mix and match parts for both style and performance.\n\nThe new content has already sparked excitement among fans, with many praising the developers for keeping the game lively and engaging. With more updates promised in the future, Kart Racers 2 continues to position itself as a top contender in the arcade racing genre.",
@@ -198,7 +198,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 19,
+        id: "1e10fc58-1fc3-4ccb-9e6f-546f4592a0fb",
         titre: "'Ancient Tactics' Adds Historical Campaign Mode",
         image: "/images/thumbnail-19.jpg",
         texteComplet: "Strategists, get ready—Ancient Tactics is expanding with a brand-new campaign mode rooted in real-world history. The update introduces a series of scenarios inspired by famous battles and leaders, offering players a chance to rewrite history through their strategic choices.\n\nEach campaign scenario challenges players with unique objectives and conditions, requiring them to adapt their tactics to succeed. From defending crumbling empires to leading ambitious invasions, the mode adds a rich narrative layer to the core gameplay. Historical accuracy has been carefully balanced with creative liberties to ensure both authenticity and fun.\n\nFans of strategy games are already hailing the update as a major addition, praising its educational value alongside its engaging gameplay. Ancient Tactics continues to stand out as a title that blends entertainment with thoughtful strategy.",
@@ -209,7 +209,7 @@ export const nouvelles = [
         bookmarkedPar: []
     },
     {
-        id: 20,
+        id: "50bd6a03-914a-45e5-b312-ac43b37d2ac4",
         titre: "'Shadow Ninja' Movie Adaptation Announced",
         image: "/images/thumbnail-20.jpg",
         texteComplet: "The stealth-action franchise Shadow Ninja is officially making the leap to the big screen. A live-action film adaptation was announced today, with production already underway in collaboration with a major Hollywood studio.\n\nWhile details about the plot remain under wraps, early reports suggest the movie will follow an original storyline inspired by the games, combining elements of stealth, martial arts, and high-octane action. The goal is to capture the essence of the franchise while appealing to both longtime fans and newcomers.\n\nReactions from the community have been mixed, with excitement tempered by cautious optimism given the rocky history of video game adaptations. Still, with a strong production team behind it, Shadow Ninja’s cinematic debut could mark a turning point for the franchise—and perhaps for game-to-film adaptations as a whole.",

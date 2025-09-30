@@ -5,7 +5,7 @@ import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import Nouvelle from "./Nouvelle.jsx";
 import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
-import {use, useContext, useState} from "react";
+import {useContext, useState} from "react";
 import CreerNouvelle from "./CreerNouvelle.jsx";
 import LoginContext from "./LoginContext.jsx";
 import { Typography } from "@mui/material";
@@ -62,6 +62,8 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
     const [nouvelleEnModification, setNouvelleEnModification] = useState(null);
     const {login} = useContext(LoginContext);
 
+    //handle utilisé pour récupérer l'id de la nouvelle, est envoyé en props à la nouvelle
+    //Sert à retrouver la nouvelle et ses infos pour pouvoir les afficher dans la modification de nouvelles
     const identifierNouvelle = (id) => {
         setNouvelleEnModification(listeNouvelles.find(nouvelle => nouvelle.id === id))
     }
@@ -101,6 +103,8 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
                         <List>
                             {nouvellesFiltrees.length > 0 ? (
                                 nouvellesFiltrees.map(nouvelle =>
+                                    //Set estDejaBookmarked à true ou false dépendemment de la donnée enregistré dans bookmarkedPar
+                                    //dans la nouvelle, pour que les nouvelles qui sont bookmarked apparaissent à l'affichage initial
                                     <Nouvelle key={nouvelle.id} nouvelleIdGetter={identifierNouvelle} setNouvelleEnModification={setNouvelleEnModification} setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert} estDejaBookmarked={nouvelle.bookmarkedPar.includes(login)} {...nouvelle}/>
                                 )
                             ) : (
