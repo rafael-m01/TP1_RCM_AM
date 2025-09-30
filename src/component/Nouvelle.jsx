@@ -23,6 +23,7 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
         setCreerNouvelleDrawerOuvert(true);
     };
 
+
     const handleAjouterBookmark = () => {
         setEstBookmarked(true)
         setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>

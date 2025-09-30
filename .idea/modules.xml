@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/tp1-rcm-am.iml" filepath="$PROJECT_DIR$/tp1-rcm-am.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TP1_RCM_AM.iml" filepath="$PROJECT_DIR$/.idea/TP1_RCM_AM.iml" />
     </modules>
   </component>
 </project>

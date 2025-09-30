@@ -18,9 +18,6 @@ import NestedList from "./NestedList.jsx";
 import {styled} from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 
-
-const more = ['Statistiques', 'Se déconnecter'];
-
 // Correction : On ajoute 'drawerWidth' à la liste des props à ne pas transmettre au DOM
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open' && prop !== 'drawerWidth',
@@ -40,7 +37,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 
-function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte, rechercheOuvert, handleRechercheOpen, drawerWidth}) {
+function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte, rechercheOuvert, handleRechercheOpen, drawerWidth}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const {login, setLogin} = useContext(LoginContext);
@@ -60,6 +57,7 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte, reche
         setAnchorElUser(null);
     };
 
+
     const handleClickMoreMenuOption = (menu) => {
         if(menu === "Se déconnecter"){
             setLogin("Se connecter")
@@ -73,17 +71,13 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte, reche
     }
 
     const handleDrawerCreerNouvelleOpen = () => {
-        setCreerNouvelleOuvert(true);
+        setCreerNouvelleDrawerOuvert(true);
     };
 
 
     const handleRetourListeNouvelles = () => {
         setPageBookmarkOuverte(false);
     };
-
-    //const AppBar = styled(MuiAppBar)(({theme}) => ({
-    //    zIndex: theme.zIndex.drawer +1
-    //}))
 
     return (
         <>
@@ -198,7 +192,6 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte, reche
                                 </IconButton>
                             </Tooltip>
                             <Menu
-                                sx={{ mt: '45px' }}
                                 id="menu-user"
 
                                 anchorEl={anchorElUser}
@@ -232,7 +225,6 @@ function ResponsiveAppBar({setCreerNouvelleOuvert, setPageBookmarkOuverte, reche
                     </Toolbar>
                 </Container>
             </AppBar>
-        <Toolbar/>
         </>
     );
 }

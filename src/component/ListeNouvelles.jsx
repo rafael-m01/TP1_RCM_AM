@@ -22,7 +22,6 @@ const checkDate = (nouvelleDateStr, critereValue) => {
     const nouvelleDate = new Date(`${nouvelleDateStr}T12:00:00`);
     const now = new Date();
 
-
     switch (critereValue) {
         case "Aujourd'hui":
             return nouvelleDate.toDateString() === now.toDateString();

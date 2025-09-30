@@ -14,15 +14,12 @@ import RechercheCritere from "./component/RechercheCritere.jsx";
 import { getCriteriaForUser, saveCriteriaForUser } from "./scripts/critereStorage.js";
 import { getNouvelles } from "./scripts/storage.js";
 import { getLogin, saveLogin } from "./scripts/loginStorage.js";
-import {nouvelles} from "./scripts/nouvelles.js"
-import CreerNouvelle from "./component/CreerNouvelle.jsx";
 import ListeBookmarks from "./component/ListeBookmarks.jsx";
 const drawerWidth = 300;
 
 const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})(
     ({theme, open}) => ({
         flexGrow: 1,
-        padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -85,10 +82,11 @@ function App() {
                 <Box sx={{display: 'flex'}}>
                     <CssBaseline/>
                     <ResponsiveAppBar
-                        setCreerNouvelleOuvert={setCreerNouvelleOuvert}
+                        setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert}
                         rechercheOuvert={rechercheOuvert}
                         handleRechercheOpen={handleRechercheOpen}
                         drawerWidth={drawerWidth}
+                        setPageBookmarkOuverte={setPageBookmarkOuverte}
                     />
                     <Main open={rechercheOuvert}>
                         <DrawerHeader/>
@@ -104,11 +102,6 @@ function App() {
                             appliedCriteria={appliedCriteria}
                         />
                         }
-                        <ListeNouvelles
-                            creerNouvelleOuvert={creerNouvelleOuvert}
-                            setCreerNouvelleOuvert={setCreerNouvelleOuvert}
-                            appliedCriteria={appliedCriteria}
-                        />
                     </Main>
                     <Drawer
                         sx={{
