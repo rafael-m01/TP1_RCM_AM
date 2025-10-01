@@ -36,10 +36,13 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-
+//Composant MUI copié et grandement adapté pour l'affichage du site
 function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte, rechercheOuvert, handleRechercheOpen, drawerWidth}) {
+    //State créé par MUI
     const [anchorElNav, setAnchorElNav] = React.useState(null);
+    //State créé par MUI
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    //Utilisation du contexte pour avoir accès au state et au setter login et setLogin
     const {login, setLogin} = useContext(LoginContext);
 
     //handle MUI pour aider la position de l'ouverture du menu 3 barres mobile
@@ -139,7 +142,7 @@ function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte,
                                 onClose={handleCloseNavMenu}
                                 sx={{display: {xs: 'block', md: 'none'}}}
                             >
-                                <NestedList handleDrawerCreerNouvelleOpen={handleDrawerCreerNouvelleOpen}/>
+                                <NestedList handleDrawerCreerNouvelleOpen={handleDrawerCreerNouvelleOpen} handleRechercheOpen={handleRechercheOpen}/>
                             </Menu>
                         </Box>
                         <GamepadIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>

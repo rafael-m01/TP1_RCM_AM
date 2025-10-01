@@ -25,8 +25,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert, nouvelleEnModification, setNouvelleEnModification}) {
+    //Collection contenant tout les choix possibles que l'utilisateur peut choisir
     const typesDeJeux = ["Sandbox", "Platformer", "Simulator", "First-person", "Adventure", "Puzzle", "Fighting", "Racing", "Stealth", "Strategy"]
+    //Utilisation du contexte pour avoir accès au state login
     const {login} = useContext(LoginContext)
+    //Utilisation du contexte pour avoir accès au state setter setListeNouvelles
     const {setListeNouvelles} = useContext(ListeNouvellesContext)
 
     //handle appelé pour fermer la section d'ajout ou modification
@@ -112,12 +115,14 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
                     <IconButton onClick={handleDrawerClose}>
                         <KeyboardArrowUpIcon sx={{color:"white"}}/>
                     </IconButton>
+                    {/* S'il y a une nouvelle en modification, change le texte titre pour Modifier la nouvelle, sinon le change pour Créer une nouvelle */}
                     {nouvelleEnModification==null?"Créer une nouvelle":"Modifier une nouvelle"}
                 </DrawerHeader>
                 <Divider />
                 <Box sx={{
                     backgroundColor:"#7d7d7d",
                 }}>
+                    {/* S'il y a une nouvelle en modification, utilise la modification de nouvelle, sinon utilise l'ajout de nouvelle */}
                     <FormControl component="form" onSubmit={nouvelleEnModification==null?ajouterNouvelle:modifierNouvelle} sx={{
                         display:"flex"
                     }}>
@@ -125,6 +130,7 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
                             marginLeft:"2%",
                             marginTop:"1%"
                         }}>
+                            {/* Affiche le titre de la nouvelle en modification comme defaultValue s'il y en a une, sinon laisse le champ vide */}
                             <TextField defaultValue={nouvelleEnModification != null?nouvelleEnModification.titre:""} name="titre" label="Titre" required={true} margin="normal" variant="filled"  size="small" sx={{
                                 backgroundColor:"white",
                                 width:"70%",
@@ -134,6 +140,7 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
                                 select
                                 label="Type de jeu"
                                 variant="standard"
+                                //Affiche le type de jeu de la nouvelle en modification comme defaultValue s'il y en a une, sinon laisse le champ vide
                                 defaultValue={nouvelleEnModification != null?nouvelleEnModification.typeDeJeu:typesDeJeux[0]}
                                 sx={{
                                     backgroundColor:"#f0f0f0",
@@ -151,6 +158,7 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
                             marginLeft:"2%",
                             marginTop:"1%"
                         }}>
+                            {/* Affiche le texte complet de la nouvelle en modification comme defaultValue s'il y en a une, sinon laisse le champ vide */}
                             <TextField defaultValue={nouvelleEnModification != null?nouvelleEnModification.texteComplet:""} name="texteComplet" multiline rows={8} label="Texte complet" required={true} margin="normal" size="small" variant="filled" sx={{
                                 backgroundColor:"white",
                                 width:"95%"
@@ -160,6 +168,7 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
                             marginLeft:"2%",
                             marginTop:"1%"
                         }}>
+                            {/* Affiche le résumé de la nouvelle en modification comme defaultValue s'il y en a une, sinon laisse le champ vide */}
                             <TextField defaultValue={nouvelleEnModification != null?nouvelleEnModification.resume:""} name="resume" label="Résumé" required={true} margin="normal" variant="filled" size="small" sx={{
                                 backgroundColor:"white",
                                 width:"95%"
@@ -168,13 +177,19 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
                         <Stack direction="row" spacing={2} sx={{
                             marginLeft:"2%",
                             marginTop:"1%",
-                            marginBottom:"1%"
+                            marginBottom:"1%",
+                            alignItems:"center"
                         }}>
+                            {/* Affiche le path de l'image apartenant nouvelle en modification comme defaultValue s'il y en a une, sinon laisse le champ vide */}
                             <TextField defaultValue={nouvelleEnModification != null?nouvelleEnModification.image:""} name="image" label="Image (chemin de fichier)" required={true} margin="normal" variant="filled" size="small" sx={{
                                 backgroundColor:"white",
                                 width:"70%"
                             }}></TextField>
-                            <Button type="submit" color="primary" variant="contained">{nouvelleEnModification==null?"Ajouter la nouvelle":"Modifier la nouvelle"}</Button>
+
+                            <Button sx={{minHeight:"50px"}} type="submit" color="primary" variant="contained">
+                                {/* S'il y a une nouvelle en modification, change le texte du bouton pour Modifier la nouvelle, sinon le change pour Ajouter la nouvelle */}
+                                {nouvelleEnModification==null?"Ajouter la nouvelle":"Modifier la nouvelle"}
+                            </Button>
                         </Stack>
                     </FormControl>
                 </Box>

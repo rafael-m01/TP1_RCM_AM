@@ -13,10 +13,15 @@ import LoginContext from "./LoginContext.jsx";
 
 const utilisateurs = ['Alexis', 'Rafael', 'Bob', 'Admin'];
 
+//Composant MUI copié et adapté pour l'affichage du site
 export default function SplitButton({setPageBookmarkOuverte}) {
+    //State créé par MUI pour controller l'ouverture et fermeture du dropdown du SplitButton
     const [open, setOpen] = React.useState(false);
+    //State créé par MUI
     const anchorRef = React.useRef(null);
+    //State créé par MUI utilisé pour remplacer le texte affiché sur le SplitButton lorsqu'une selection est fait
     const [label, setLabel] = React.useState("Se connecter");
+    //Utilisation du contexte pour avoir accès au state et au setter login et setLogin
     const {login, setLogin} = useContext(LoginContext)
 
     //handle qui s'occupe de changer l'utilisateur en cours à l'utilisateur choisi

@@ -58,9 +58,12 @@ const checkTaille = (contenu, critereValue) => {
 };
 
 export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert, appliedCriteria}) {
+    //Utilisation du contexte pour avoir accès au state et au setter listeNouvelles et setListeNouvelles
     const {listeNouvelles, setListeNouvelles} = useContext(ListeNouvellesContext);
-    const [nouvelleEnModification, setNouvelleEnModification] = useState(null);
+    //Utilisation du contexte pour avoir accès au state login
     const {login} = useContext(LoginContext);
+    //State utilisé pour tenir la nouvelle en modification, pour que les informations puissent être placées dans la section creerNouvelle
+    const [nouvelleEnModification, setNouvelleEnModification] = useState(null);
 
     //handle utilisé pour récupérer l'id de la nouvelle, est envoyé en props à la nouvelle
     //Sert à retrouver la nouvelle et ses infos pour pouvoir les afficher dans la modification de nouvelles

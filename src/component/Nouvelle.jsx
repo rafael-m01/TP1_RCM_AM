@@ -13,11 +13,16 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
 import NouvelleComplete from "./NouvelleComplete.jsx";
+import BoutonSupprimerNouvelle from "./BoutonSupprimerNouvelle.jsx";
 
 export default function Nouvelle({id, titre, image, texteComplet, datePublication, resume, createur, nouvelleIdGetter, supprimerNouvelle, setCreerNouvelleDrawerOuvert, estDejaBookmarked, typeDeJeu}){
+    //Utilisation du contexte pour avoir accès au state login
     const {login} = useContext(LoginContext)
+    //State utilisé pour permettre l'ajout et la suppression de bookmark, ainsi que permettre le changement visuel instantanné
     const [estBookmarked, setEstBookmarked] = useState(estDejaBookmarked)
+    //Utilisation du contexte pour avoir accès au state setter setListeNouvelles
     const {setListeNouvelles} = useContext(ListeNouvellesContext)
+    //State utilisé pour controller l'ouverture et fermeture de l'affichage de la nouvelle complète
     const [nouvelleCompleteOuverte, setNouvelleCompleteOuverte] = useState(false)
 
     //handle appelé au click du bouton modifier, identifie la nouvelle avec le getter d'id et ouvre la section de modification/creation de nouvelle
@@ -74,9 +79,7 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
                                 <IconButton edge="end" aria-label="delete">
                                     <EditIcon sx={{color:"white"}} onClick={handleModifierNouvelle}/>
                                 </IconButton>
-                                <IconButton edge="end" aria-label="delete">
-                                    <DeleteIcon sx={{color:"white"}} onClick={() => supprimerNouvelle(id)}/>
-                                </IconButton>
+                                <BoutonSupprimerNouvelle id={id} supprimerNouvelle={supprimerNouvelle}/>
                             </>: null}
                         {/* Ne fait apparaitre le bookmark que si un utilisateur est connecté */}
                         {login !== "Se connecter"?
@@ -116,9 +119,9 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
                     }}
                 />
             </ListItem>
-            <NouvelleComplete nouvelleCompleteOuverte={nouvelleCompleteOuverte} setNouvelleCompleteOuverte={setNouvelleCompleteOuverte}
+            <NouvelleComplete id={id} nouvelleCompleteOuverte={nouvelleCompleteOuverte} setNouvelleCompleteOuverte={setNouvelleCompleteOuverte}
                               titre={titre} image={image} texteComplet={texteComplet} datePublication={datePublication} resume={resume}
-                              typeDeJeu={typeDeJeu} createur={createur}/>
+                              typeDeJeu={typeDeJeu} createur={createur} estBookmarked={estBookmarked} setEstBookmarked={setEstBookmarked}/>
         </>
     )
 }

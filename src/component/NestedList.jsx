@@ -13,9 +13,13 @@ import LoginContext from "./LoginContext.jsx";
 import Divider from "@mui/material/Divider";
 import { saveLogin } from "../scripts/loginStorage.js";
 
-export default function NestedList({handleDrawerCreerNouvelleOpen}) {
+//Composant MUI copié et adapté pour l'affichage du site
+export default function NestedList({handleDrawerCreerNouvelleOpen, handleRechercheOpen}) {
+    //State créé par MUI utilisé pour ouvrir et fermer la NestedList
     const [open, setOpen] = React.useState(false);
+    //Array contenant les utilisateurs de l'application
     const utilisateurs = ['Alexis', 'Rafael', 'Bob', 'Admin'];
+    //Utilisation du contexte pour avoir accès au state setter setLogin
     const {setLogin} = useContext(LoginContext)
 
 
@@ -57,7 +61,7 @@ export default function NestedList({handleDrawerCreerNouvelleOpen}) {
                 <ListItemText primary={"Créer une nouvelle"} />
             </ListItemButton>
             <Divider />
-            <ListItemButton key={"Recherche"}>
+            <ListItemButton key={"Recherche"} onClick={handleRechercheOpen}>
                 <ListItemText primary={"Recherche"} />
             </ListItemButton>
             <Divider />

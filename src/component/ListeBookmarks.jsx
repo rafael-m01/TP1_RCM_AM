@@ -15,8 +15,11 @@ const Demo = styled('div')(() => ({
 
 
 export default function ListeBookmarks({creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert}) {
+    //Utilisation du contexte pour avoir accès au state setter setListeNouvelles
     const {listeNouvelles} = useContext(ListeNouvellesContext)
+    //Utilisation du contexte pour avoir accès au state login
     const {login} = useContext(LoginContext);
+    //State utilisé pour tenir la nouvelle en modification, pour que les informations puissent être placées dans la section creerNouvelle
     const [nouvelleEnModification, setNouvelleEnModification] = useState(null)
 
     //handle utilisé pour récupérer l'id de la nouvelle, est envoyé en props à la nouvelle
