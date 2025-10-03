@@ -37,7 +37,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 //Composant MUI copié et grandement adapté pour l'affichage du site
-function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte, rechercheOuvert, handleRechercheOpen, drawerWidth}) {
+function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte, setPageStatistiquesOuverte,rechercheOuvert, handleRechercheOpen, drawerWidth}) {
     //State créé par MUI
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     //State créé par MUI
@@ -62,6 +62,7 @@ function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte,
         setAnchorElUser(null);
     };
 
+
     //handle s'occupant du fonctionnement de chaque option du menu 3 points
     const handleClickMoreMenuOption = (menu) => {
 
@@ -72,10 +73,12 @@ function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte,
             // sur la liste bookmarks en cliquant se déconnecter
             handleRetourListeNouvelles()
         }else if(menu === "Statistiques"){
-            console.log("Stats!")
+            setPageStatistiquesOuverte(true); // Affiche la page des stats
+            setPageBookmarkOuverte(false);    // Cache les autres pages
         }else{
             //Ouvre la page de la liste de bookmarks de l'utilisateur
             setPageBookmarkOuverte(true)
+            setPageStatistiquesOuverte(false);
         }
         handleCloseUserMenu()
     }
@@ -88,6 +91,7 @@ function ResponsiveAppBar({setCreerNouvelleDrawerOuvert, setPageBookmarkOuverte,
     //handle pour ramener à la page liste nouvelles de base si on était sur la liste bookmarks
     const handleRetourListeNouvelles = () => {
         setPageBookmarkOuverte(false);
+        setPageStatistiquesOuverte(false);
     };
 
     return (

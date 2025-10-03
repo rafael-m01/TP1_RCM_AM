@@ -4,7 +4,7 @@ export const nouvelles = [
         titre: "Legendary Quest 3 Announced with Next-Gen Graphics",
         image: "/images/thumbnail-1.jpg",
         texteComplet: "The gaming world erupted with excitement today as developers officially announced Legendary Quest 3, the long-awaited sequel in the acclaimed RPG series. The reveal came during a live-streamed event, where breathtaking next-generation footage was showcased to an eager audience.\n\nThe game promises to deliver an expansive open world larger and more dynamic than ever before, featuring cutting-edge visuals powered by the studio’s new engine. Players can look forward to dynamic weather effects, realistic day-night cycles, and immersive landscapes teeming with life. AI companions have also been overhauled, with smarter decision-making and unique personalities that evolve throughout the story.\n\nPerhaps the most groundbreaking feature is the confirmation of seamless cross-platform multiplayer. Adventurers will be able to team up with friends across PC, PlayStation, and Xbox without barriers, tackling quests and uncovering the mysteries of the world together. With promises of deeper storylines, innovative gameplay systems, and stunning visuals, Legendary Quest 3 is shaping up to be the most ambitious entry in the franchise to date.",
-        datePublication: "2025-09-22",
+        datePublication: "2025-10-01",
         resume: "Legendary Quest 3 is coming with stunning next-gen visuals and new gameplay features.",
         createur: "Alexis",
         typeDeJeu: "Adventure",

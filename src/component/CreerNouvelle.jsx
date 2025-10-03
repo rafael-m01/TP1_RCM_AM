@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import {useContext} from "react";
 import LoginContext from "./LoginContext.jsx";
 import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
+import { saveNouvelles } from '../scripts/storage.js';
 
 const drawerWidth = "100%";
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -46,48 +47,72 @@ export default function CreerNouvelle({creerNouvelleDrawerOuvert, setCreerNouvel
     }));
 
     //Fonction pour ajouter une nouvelle a la liste avec les données du form
-    function ajouterNouvelle(event){
-        event.preventDefault()
+    function ajouterNouvelle(event) {
+        event.preventDefault();
         const formData = new FormData(event.target);
-        //Ajout de chaque donnée à la nouvelle nouvelle
         const nouvelle = {
-            id:crypto.randomUUID(),
-            titre:formData.get("titre"),
-            image:formData.get("image"),
-            texteComplet:formData.get("texteComplet"),
-            datePublication:new Date().toISOString().split("T")[0],
-            resume:formData.get("resume"),
-            createur:login,
-            typeDeJeux:formData.get("typeDeJeux"),
-            bookmarkedPar:[]
-        }
-        //Ajout de la nouvelle à la liste avec le setter du state
-        setListeNouvelles((oldListeNouvelles) => ([nouvelle, ...oldListeNouvelles]))
-        //Set DrawerOuvert à false pour refermer la section CreerNouvelle après l'ajout
+            id: crypto.randomUUID(),
+            titre: formData.get("titre"),
+            image: formData.get("image"),
+            texteComplet: formData.get("texteComplet"),
+            datePublication: new Date().toISOString().split("T")[0],
+            resume: formData.get("resume"),
+            createur: login,
+            typeDeJeu: formData.get("typeDeJeu"),
+            bookmarkedPar: [],
+            commentaires: []
+        };
+
+        // On utilise une variable temporaire pour la nouvelle liste
+        let listeMiseAJour;
+
+        // On met à jour l'état de React et on récupère la nouvelle liste
+        setListeNouvelles((oldListeNouvelles) => {
+            listeMiseAJour = [nouvelle, ...oldListeNouvelles];
+            return listeMiseAJour;
+        });
+
+        // ON SAUVEGARDE CETTE NOUVELLE LISTE DANS LE LOCALSTORAGE
+        // (Attendez que l'état soit mis à jour avant de sauvegarder)
+        setTimeout(() => saveNouvelles(listeMiseAJour), 0);
+
+        // On ferme le "drawer"
         setCreerNouvelleDrawerOuvert(false);
     }
 
     //Fonction pour modifier une nouvelle existante dans la liste de nouvelles avec les données du form
-    function modifierNouvelle(event){
-        event.preventDefault()
+    function modifierNouvelle(event) {
+        event.preventDefault();
         const formData = new FormData(event.target);
-        //Parcours la liste de nouvelle et change les données si l'id correspond à la nouvelle en modification
-        setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>
-            nouvelle.id === nouvelleEnModification.id
-                ? {...nouvelle,
-                    titre:formData.get("titre"),
-                    image:formData.get("image"),
-                    texteComplet:formData.get("texteComplet"),
-                    datePublication:new Date().toISOString().split("T")[0],
-                    resume:formData.get("resume"),
-                    createur:login,
-                    typeDeJeux:formData.get("typeDeJeux")}
-                : nouvelle
-        )));
-        //Set DrawerOuvert à false pour refermer la section CreerNouvelle
+
+        // On utilise une variable temporaire pour la nouvelle liste
+        let listeMiseAJour;
+
+        // On met à jour l'état de React et on récupère la nouvelle liste
+        setListeNouvelles((oldListeNouvelles) => {
+            listeMiseAJour = oldListeNouvelles.map(nouvelle =>
+                nouvelle.id === nouvelleEnModification.id
+                    ? {
+                        ...nouvelle,
+                        titre: formData.get("titre"),
+                        image: formData.get("image"),
+                        texteComplet: formData.get("texteComplet"),
+                        datePublication: new Date().toISOString().split("T")[0],
+                        resume: formData.get("resume"),
+                        createur: login,
+                        typeDeJeu: formData.get("typeDeJeu")
+                    }
+                    : nouvelle
+            );
+            return listeMiseAJour;
+        });
+
+        // ON SAUVEGARDE CETTE NOUVELLE LISTE DANS LE LOCALSTORAGE
+        // (Attendez que l'état soit mis à jour avant de sauvegarder)
+        setTimeout(() => saveNouvelles(listeMiseAJour), 0);
+
+        // On ferme le "drawer" et on réinitialise
         setCreerNouvelleDrawerOuvert(false);
-        //Remet le state NouvelleEnModification à null pour s'assurer que les informations d'une nouvelle
-        // en modification ne restent pas à la prochaine ouverture de la section
         setNouvelleEnModification(null);
     }
 
