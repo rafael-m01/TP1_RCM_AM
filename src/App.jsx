@@ -11,10 +11,11 @@ import ListeNouvelles from "./component/ListeNouvelles.jsx";
 import LoginContext from "./component/LoginContext.jsx";
 import ListeNouvellesContext from "./component/ListeNouvellesContext.jsx";
 import RechercheCritere from "./component/RechercheCritere.jsx";
-import { getCriteriaForUser, saveCriteriaForUser } from "./scripts/critereStorage.js";
+import { getCritereUsager, saveCritereUsager } from "./scripts/critereStorage.js";
 import { getNouvelles } from "./scripts/storage.js";
 import { getLogin, saveLogin } from "./scripts/loginStorage.js";
 import ListeBookmarks from "./component/ListeBookmarks.jsx";
+import PageStatistiques from "./component/PageStatistique.jsx";
 const drawerWidth = 300;
 
 const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})(
@@ -46,36 +47,40 @@ const DrawerHeader = styled('div')(({theme}) => ({
 
 function App() {
     const theme = useTheme();
-    // 1. L'état du login est initialisé en premier
+    // L'état du login est initialisé en premier
     const [login, setLogin] = useState(getLogin);
 
-    // 2. L'état des critères est ensuite initialisé EN FONCTION de l'utilisateur connecté
-    const [appliedCriteria, setAppliedCriteria] = useState(() => getCriteriaForUser(login));
+    // L'état des critères est ensuite initialisé EN FONCTION de l'utilisateur connecté
+    const [CritereApplique, setCritereApplique] = useState(() => getCritereUsager(login));
 
     const [listeNouvelles, setListeNouvelles] = useState(getNouvelles);
     const [creerNouvelleDrawerOuvert, setCreerNouvelleDrawerOuvert] = useState(false);
     const [pageBookmarkOuverte, setPageBookmarkOuverte] = useState(false);
     const [rechercheOuvert, setRechercheOuvert] = useState(false);
+    const [pageStatistiquesOuverte, setPageStatistiquesOuverte] = useState(false);
 
-    // EFFET 1 : Sauvegarde les changements de l'utilisateur
+    // Sauvegarde les changements de l'utilisateur
     useEffect(() => {
         saveLogin(login);
     }, [login]);
 
-    // EFFET 2 : Recharge les critères quand l'utilisateur CHANGE
+    // Recharge les critères quand l'utilisateur CHANGE
     useEffect(() => {
-        const userCriteria = getCriteriaForUser(login);
-        setAppliedCriteria(userCriteria);
+        const userCritere = getCritereUsager(login);
+        setCritereApplique(userCritere);
     }, [login]); // Se déclenche à chaque changement de 'login'
 
-    // EFFET 3 : Sauvegarde les critères pour l'utilisateur ACTIF quand ils changent
+    // Sauvegarde les critères pour l'utilisateur ACTIF quand ils changent
     useEffect(() => {
-        saveCriteriaForUser(login, appliedCriteria);
-    }, [appliedCriteria, login]); // Se déclenche si les critères OU l'utilisateur changent
+        saveCritereUsager(login, CritereApplique);
+    }, [CritereApplique, login]); // Se déclenche si les critères OU l'utilisateur changent
 
     const handleRechercheOpen = () => setRechercheOuvert(true);
     const handleRechercheClose = () => setRechercheOuvert(false);
-
+    const handleRetour = () => {
+        setPageStatistiquesOuverte(false);
+        setPageBookmarkOuverte(false); // Assure aussi le retour depuis les bookmarks
+    };
     return (
         <LoginContext.Provider value={{login, setLogin}}>
             <ListeNouvellesContext.Provider value={{listeNouvelles, setListeNouvelles}}>
@@ -87,21 +92,25 @@ function App() {
                         handleRechercheOpen={handleRechercheOpen}
                         drawerWidth={drawerWidth}
                         setPageBookmarkOuverte={setPageBookmarkOuverte}
+                        setPageStatistiquesOuverte={setPageStatistiquesOuverte}
                     />
                     <Main open={rechercheOuvert}>
                         <DrawerHeader/>
                         {/* On passe les critères à la liste des nouvelles */}
-                        {pageBookmarkOuverte?
+                        {pageStatistiquesOuverte ? (
+                            <PageStatistiques onRetour={handleRetour}/>
+                        ) :
+                         pageBookmarkOuverte? (
                         <ListeBookmarks 
                             creerNouvelleDrawerOuvert={creerNouvelleDrawerOuvert} 
                             setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert}
                         />
-                        :<ListeNouvelles 
+                         ):(  <ListeNouvelles
                             creerNouvelleDrawerOuvert={creerNouvelleDrawerOuvert} 
                             setCreerNouvelleDrawerOuvert={setCreerNouvelleDrawerOuvert}
-                            appliedCriteria={appliedCriteria}
+                            appliedCriteria={CritereApplique}
                         />
-                        }
+                         )}
                     </Main>
                     <Drawer
                         sx={{
@@ -123,8 +132,8 @@ function App() {
                         <Divider/>
                         {/* On passe les critères et leur setter au composant de recherche */}
                         <RechercheCritere
-                            appliedCriteria={appliedCriteria}
-                            setAppliedCriteria={setAppliedCriteria}
+                            critereApplique={CritereApplique}
+                            setCritereApplique={setCritereApplique}
                         />
                     </Drawer>
                 </Box>

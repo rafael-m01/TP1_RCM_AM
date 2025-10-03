@@ -9,13 +9,12 @@ import {useContext, useState} from "react";
 import CreerNouvelle from "./CreerNouvelle.jsx";
 import LoginContext from "./LoginContext.jsx";
 import { Typography } from "@mui/material";
-
+import { saveNouvelles } from '../scripts/storage.js';
 
 const Demo = styled('div')(() => ({
     backgroundImage:"linear-gradient(#3b3b3b, #1f1f1f)"
 }));
 
-// Fonctions d'aide (inchangées)
 const checkDate = (nouvelleDateStr, critereValue) => {
     if (!nouvelleDateStr) return false;
     // Les dates "YYYY-MM-DD" sont interprétées en UTC, on ajoute l'heure pour éviter les décalages de fuseau horaire
@@ -72,8 +71,15 @@ export default function ListeNouvelles({creerNouvelleDrawerOuvert, setCreerNouve
     }
 
     const supprimerNouvelle = (id) => {
-        setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.filter(nouvelle => nouvelle.id !== id)));
-    }
+        // Créer la nouvelle liste filtrée
+        const listeMiseAJour = listeNouvelles.filter(nouvelle => nouvelle.id !== id);
+
+        // Mettre à jour l'état de React (pour l'UI)
+        setListeNouvelles(listeMiseAJour);
+
+        // Sauvegarder dans le localStorage (pour la persistance)
+        saveNouvelles(listeMiseAJour);
+    };
 
     const nouvellesFiltrees = listeNouvelles.filter(nouvelle => {
         if (appliedCriteria.length === 0) {

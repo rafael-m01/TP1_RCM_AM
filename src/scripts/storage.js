@@ -1,3 +1,5 @@
+// ./scripts/storage.js
+
 import { nouvelles as initialNouvelles } from './nouvelles.js';
 
 const NOUVELLES_KEY = 'listeNouvelles';
@@ -9,31 +11,27 @@ const NOUVELLES_KEY = 'listeNouvelles';
  */
 export const getNouvelles = () => {
     try {
-        let nouvelles = localStorage.getItem(NOUVELLES_KEY);
+        const nouvelles = localStorage.getItem(NOUVELLES_KEY);
         if (!nouvelles) {
-            // Si aucune nouvelle n'est sauvegardée, on utilise la liste initiale
             localStorage.setItem(NOUVELLES_KEY, JSON.stringify(initialNouvelles));
             return initialNouvelles;
         }
         return JSON.parse(nouvelles);
     } catch (error) {
         console.error("Erreur lors de la lecture des nouvelles", error);
-        return initialNouvelles; // Retourne les données initiales en cas d'erreur
+        return initialNouvelles;
     }
 };
 
 /**
- * Sauvegarde une nouvelle nouvelle dans la liste.
- * @param {object} nouvelle - La nouvelle à ajouter (sans id).
- * @returns {Array} La nouvelle liste mise à jour.
+ * Sauvegarde un tableau complet de nouvelles dans le localStorage.
+ * C'est la seule fonction dont nous avons besoin pour écrire des données.
+ * @param {Array} nouvelles - Le tableau complet des nouvelles à sauvegarder.
  */
-export const saveNouvelle = (nouvelle) => {
-    const nouvelles = getNouvelles();
-    const nouvelleAvecId = {
-        ...nouvelle,
-        id: Date.now(), // Génère un ID unique simple
-    };
-    const updatedNouvelles = [nouvelleAvecId, ...nouvelles];
-    localStorage.setItem(NOUVELLES_KEY, JSON.stringify(updatedNouvelles));
-    return updatedNouvelles;
+export const saveNouvelles = (nouvelles) => {
+    try {
+        localStorage.setItem(NOUVELLES_KEY, JSON.stringify(nouvelles));
+    } catch (error) {
+        console.error("Erreur lors de la sauvegarde des nouvelles", error);
+    }
 };

@@ -15,7 +15,7 @@ import ListeNouvellesContext from "./ListeNouvellesContext.jsx";
 import NouvelleComplete from "./NouvelleComplete.jsx";
 import BoutonSupprimerNouvelle from "./BoutonSupprimerNouvelle.jsx";
 
-export default function Nouvelle({id, titre, image, texteComplet, datePublication, resume, createur, nouvelleIdGetter, supprimerNouvelle, setCreerNouvelleDrawerOuvert, estDejaBookmarked, typeDeJeu}){
+export default function Nouvelle({id, titre, image, texteComplet, datePublication, resume, createur, nouvelleIdGetter, supprimerNouvelle, setCreerNouvelleDrawerOuvert, estDejaBookmarked, typeDeJeu,commentaires}){
     //Utilisation du contexte pour avoir accès au state login
     const {login} = useContext(LoginContext)
     //State utilisé pour permettre l'ajout et la suppression de bookmark, ainsi que permettre le changement visuel instantanné
@@ -39,7 +39,7 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
         setListeNouvelles((oldListeNouvelles) => (oldListeNouvelles.map(nouvelle =>
             nouvelle.id === id
                 ? {...nouvelle,
-                    bookmarkedPar:[...nouvelle.bookmarkedPar, login]}
+                    bookmarkedPar:[...(nouvelle.bookmarkedPar || []), login]}
                 : nouvelle
         )));
     };
@@ -121,7 +121,7 @@ export default function Nouvelle({id, titre, image, texteComplet, datePublicatio
             </ListItem>
             <NouvelleComplete id={id} nouvelleCompleteOuverte={nouvelleCompleteOuverte} setNouvelleCompleteOuverte={setNouvelleCompleteOuverte}
                               titre={titre} image={image} texteComplet={texteComplet} datePublication={datePublication} resume={resume}
-                              typeDeJeu={typeDeJeu} createur={createur} estBookmarked={estBookmarked} setEstBookmarked={setEstBookmarked}/>
+                              typeDeJeu={typeDeJeu} createur={createur} estBookmarked={estBookmarked} setEstBookmarked={setEstBookmarked}  commentaires={commentaires || []}/>
         </>
     )
 }
